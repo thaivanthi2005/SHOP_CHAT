@@ -15,7 +15,7 @@ module.exports.index = async (req, res) => {
   });
 };
 
-//GET /create
+//[GET] /create
 module.exports.create = async (req, res) => {
   const friendList = res.locals.user.friendList;
   for (const friend of friendList) {
@@ -31,7 +31,7 @@ module.exports.create = async (req, res) => {
   });
 };
 
-//POST /create
+//[POST] /create
 module.exports.create_post = async (req, res) => {
   const title = req.body.title;
   const usersId = req.body.usersId;

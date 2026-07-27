@@ -12,13 +12,17 @@ module.exports.index = async (req, res) => {
 
 module.exports.settingGeneralPOST = async (req, res) => {
   const settingsGeneral = await settings_general.findOne({});
+  console.log(settingsGeneral);
+  console.log(req.body);
+
   if (settingsGeneral) {
     await settingsGeneral.updateOne(
       {
-        _id: settingsGeneral.id,
+        _id: settingsGeneral._id,
       },
       req.body,
     );
+    console.log(kkkk);
   } else {
     const settingsGeneralNew = new settings_general(req.body);
     settingsGeneralNew.save();

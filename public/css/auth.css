@@ -1,0 +1,73 @@
+/* ===== REGISTER PAGE ===== */
+
+h1.text-center {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 28px;
+  letter-spacing: -0.4px;
+}
+
+/* ===== FORM GROUP ===== */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 7px;
+}
+
+/* ===== INPUT ===== */
+.form-control {
+  width: 100%;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #1a1a2e;
+  background: #fafbff;
+  outline: none;
+  transition: all 0.25s;
+  font-family: inherit;
+}
+
+.form-control::placeholder {
+  color: #b0b8cc;
+}
+
+.form-control:focus {
+  border-color: #1251c9;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(18, 81, 201, 0.1);
+}
+
+/* ===== NÚT ĐĂNG KÝ ===== */
+.btn.btn-primary.btn-block {
+  width: 100%;
+  background: linear-gradient(135deg, #1251c9 0%, #3b6ee8 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.25s;
+  box-shadow: 0 8px 24px rgba(18, 81, 201, 0.3);
+  font-family: inherit;
+  letter-spacing: 0.3px;
+}
+
+.btn.btn-primary.btn-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(18, 81, 201, 0.42);
+}
+
+.btn.btn-primary.btn-block:active {
+  transform: translateY(0);
+}

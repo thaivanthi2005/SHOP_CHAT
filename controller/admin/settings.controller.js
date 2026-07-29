@@ -13,20 +13,18 @@ module.exports.index = async (req, res) => {
 module.exports.settingGeneralPOST = async (req, res) => {
   const settingsGeneral = await settings_general.findOne({});
   console.log(settingsGeneral);
-  console.log(req.body);
 
   if (settingsGeneral) {
-    await settingsGeneral.updateOne(
+    console.log(settingsGeneral.id);
+    await settings_general.updateOne(
       {
-        _id: settingsGeneral._id,
+        _id: settingsGeneral.id,
       },
       req.body,
     );
-    console.log(kkkk);
   } else {
     const settingsGeneralNew = new settings_general(req.body);
     settingsGeneralNew.save();
   }
-
   res.redirect(`${system_config.prefixAdmin}/settings/general`);
 };

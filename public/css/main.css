@@ -1,0 +1,7 @@
+/* Import theo đúng thứ tự để đảm bảo cascade không đổi */
+@import url("base.css");
+@import url("header.css");
+@import url("product.css");
+@import url("auth.css");
+@import url("chat.css");
+@import url("friend.css");

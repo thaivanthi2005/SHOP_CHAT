@@ -1,0 +1,89 @@
+/* ===== FRIEND / USER CARD (add / cancel / accept / refuse states) ===== */
+.box-user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+
+.box-user .inner-avatar img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.box-user .inner-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.box-user .inner-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.box-user .inner-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* default: show "add friend", hide the rest */
+.box-user [btn-cancel-friend],
+.box-user [btn-deleted-friend],
+.box-user [btn-accepted-friend] {
+  display: none;
+}
+
+/* state: request sent */
+.box-user.add [btn-add-friend] {
+  display: none;
+}
+.box-user.add [btn-cancel-friend] {
+  display: inline-block;
+}
+
+/* state: refused */
+.box-user.refuse [btn-accept-friend],
+.box-user.refuse [btn-refuse-friend] {
+  display: none;
+}
+.box-user.refuse [btn-deleted-friend] {
+  display: inline-block;
+}
+
+/* state: accepted */
+.box-user.accepted [btn-accept-friend],
+.box-user.accepted [btn-refuse-friend] {
+  display: none;
+}
+.box-user.accepted [btn-accepted-friend] {
+  display: inline-block;
+}
+
+/* ONLINE STATUS */
+.box-user .inner-status {
+  font-size: 12px;
+  color: #00d800;
+  opacity: 0;
+}
+
+.box-user .inner-status[status="online"] {
+  opacity: 1;
+}
+
+@media (max-width: 576px) {
+  .box-user {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

@@ -2,8 +2,7 @@ extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 
 block main
-  .container.my-3
-
+  .container.page-shell
     include ../../partials/list-btn-users.pug
 
     .row
@@ -13,15 +12,14 @@ block main
     .row(data-users-friend=user.id)
       each user in users
         .col-md-6(user-id=user.id)
-          div(class="box-user")
-            div(class="inner-avatar")
+          .box-user
+            .inner-avatar
               img(src=(user.avatar ? user.avatar : "/images/default.jpg"), alt=user.fullName)
-            div(class="inner-info")
-                div(class="inner-name") #{user.fullName}
-                div(class="inner-buttons")
-                    a(href=`/chat/${user.infoFriend.room_chat_id}`,
-                    class="btn btn-sm btn-primary mr-1" ) Nhắn tin
-            div(class="inner-status" status = user.statusOnline)
-                i(class="fa fa-circle")
+            .inner-info
+              .inner-name #{user.fullName}
+              .inner-buttons
+                a.btn.btn-sm.btn-primary(href=`/chat/${user.infoFriend.room_chat_id}`) Nhắn tin
+            .inner-status(status=user.statusOnline)
+              i.fa.fa-circle
 block scripts
   script(type="module" src="/js/users.js")

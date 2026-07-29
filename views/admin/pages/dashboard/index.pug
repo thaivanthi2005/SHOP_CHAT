@@ -1,51 +1,87 @@
 extends ../../layouts/default.pug
 
 block main
-  h1 Dashboard
+  .dashboard
+    .dashboard-header
+      h1.dashboard-title Dashboard
+      p.dashboard-subtitle Tổng quan hệ thống quản trị
 
-  .row
-    .col-6
-      .card.mb-4
-        .card-header Thông tin tài khoản
-        .card-body
+    .dashboard-grid
+      .dashboard-card.dashboard-card--profile
+        .dashboard-card__head
+          span.dashboard-card__label Thông tin tài khoản
+        .dashboard-card__body.dashboard-profile
           if user.avatar
-            img(src=user.avatar alt="Avatar" class="img-thumbnail mb-2" style="width: 100px")
-          p Họ tên: <b>#{user.fullName}</b>
-          if user.email
-            p Email: <b>#{user.email}</b>
-          if user.phone
-            p Số điện thoại: <b>#{user.phone}</b>
-          if roles.title
-            p Phân quyền: <b>#{roles.title}</b>
+            img.dashboard-avatar(src=user.avatar alt="Avatar")
+          else
+            .dashboard-avatar.dashboard-avatar--fallback #{user.fullName ? user.fullName.charAt(0) : "A"}
+          .dashboard-profile__info
+            p.dashboard-profile__name #{user.fullName}
+            if user.email
+              p.dashboard-profile__meta
+                span Email
+                b #{user.email}
+            if user.phone
+              p.dashboard-profile__meta
+                span Số điện thoại
+                b #{user.phone}
+            if roles.title
+              p.dashboard-profile__meta
+                span Phân quyền
+                b.dashboard-badge #{roles.title}
 
-    .col-6
-      .card.mb-4
-        .card-header Danh mục sản phẩm
-        .card-body
-          p Số lượng: <b>#{statistic.categoryProduct.total}</b>
-          p Hoạt động: <b>#{statistic.categoryProduct.active}</b>
-          p Dừng hoạt động: <b>#{statistic.categoryProduct.inactive}</b>
+      .dashboard-card
+        .dashboard-card__head
+          span.dashboard-card__label Danh mục sản phẩm
+          span.dashboard-card__icon.dashboard-card__icon--teal
+        .dashboard-card__body
+          p.dashboard-stat__total #{statistic.categoryProduct.total}
+          .dashboard-stat__row
+            .dashboard-stat__item
+              span Hoạt động
+              b.dashboard-stat__active #{statistic.categoryProduct.active}
+            .dashboard-stat__item
+              span Dừng hoạt động
+              b.dashboard-stat__inactive #{statistic.categoryProduct.inactive}
 
-      .card.mb-4
-        .card-header Sản phẩm
-        .card-body
-          p Số lượng: <b>#{statistic.product.total}</b>
-          p Hoạt động: <b>#{statistic.product.active}</b>
-          p Dừng hoạt động: <b>#{statistic.product.inactive}</b>
+      .dashboard-card
+        .dashboard-card__head
+          span.dashboard-card__label Sản phẩm
+          span.dashboard-card__icon.dashboard-card__icon--blue
+        .dashboard-card__body
+          p.dashboard-stat__total #{statistic.product.total}
+          .dashboard-stat__row
+            .dashboard-stat__item
+              span Hoạt động
+              b.dashboard-stat__active #{statistic.product.active}
+            .dashboard-stat__item
+              span Dừng hoạt động
+              b.dashboard-stat__inactive #{statistic.product.inactive}
 
-  .row
-    .col-6
-      .card.mb-4
-        .card-header Tài khoản admin
-        .card-body
-          p Số lượng: <b>#{statistic.account.total}</b>
-          p Hoạt động: <b>#{statistic.account.active}</b>
-          p Dừng hoạt động: <b>#{statistic.account.inactive}</b>
+      .dashboard-card
+        .dashboard-card__head
+          span.dashboard-card__label Tài khoản admin
+          span.dashboard-card__icon.dashboard-card__icon--slate
+        .dashboard-card__body
+          p.dashboard-stat__total #{statistic.account.total}
+          .dashboard-stat__row
+            .dashboard-stat__item
+              span Hoạt động
+              b.dashboard-stat__active #{statistic.account.active}
+            .dashboard-stat__item
+              span Dừng hoạt động
+              b.dashboard-stat__inactive #{statistic.account.inactive}
 
-    .col-6
-      .card.mb-4
-        .card-header Tài khoản client
-        .card-body
-          p Số lượng: <b>#{statistic.user.total}</b>
-          p Hoạt động: <b>#{statistic.user.active}</b>
-          p Dừng hoạt động: <b>#{statistic.user.inactive}</b>
+      .dashboard-card
+        .dashboard-card__head
+          span.dashboard-card__label Tài khoản client
+          span.dashboard-card__icon.dashboard-card__icon--amber
+        .dashboard-card__body
+          p.dashboard-stat__total #{statistic.user.total}
+          .dashboard-stat__row
+            .dashboard-stat__item
+              span Hoạt động
+              b.dashboard-stat__active #{statistic.user.active}
+            .dashboard-stat__item
+              span Dừng hoạt động
+              b.dashboard-stat__inactive #{statistic.user.inactive}

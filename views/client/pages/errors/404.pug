@@ -5,12 +5,17 @@ html(lang="vi")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title #{pagetitle}
     link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css")
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin="")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Work+Sans:wght@400;500;600&display=swap")
     style.
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        background: #f5f5f3;
+        font-family: "Work Sans", "Segoe UI", sans-serif;
+        background:
+          radial-gradient(800px 320px at 10% 0%, rgba(234, 88, 12, 0.12), transparent 55%),
+          #f6f3ee;
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -24,8 +29,9 @@ html(lang="vi")
         text-align: center;
         padding: 3rem 2rem;
         background: #fff;
-        border-radius: 16px;
-        border: 1px solid #e8e8e6;
+        border-radius: 20px;
+        border: 1px solid #e7e5e4;
+        box-shadow: 0 16px 40px rgba(28, 25, 23, 0.1);
         max-width: 480px;
         width: 90%;
         position: relative;
@@ -38,14 +44,14 @@ html(lang="vi")
         position: absolute;
         border-radius: 50%;
         pointer-events: none;
-        opacity: 0.07;
+        opacity: 0.12;
         filter: blur(60px);
       }
 
       .page-404::before {
         width: 280px;
         height: 280px;
-        background: #534AB7;
+        background: #ea580c;
         top: -80px;
         right: -60px;
       }
@@ -53,7 +59,7 @@ html(lang="vi")
       .page-404::after {
         width: 240px;
         height: 240px;
-        background: #1D9E75;
+        background: #78716c;
         bottom: -60px;
         left: -40px;
       }
@@ -62,8 +68,8 @@ html(lang="vi")
         width: 72px;
         height: 72px;
         border-radius: 50%;
-        background: #f5f4fe;
-        border: 1px solid #e0ddfb;
+        background: #fff7ed;
+        border: 1px solid #fed7aa;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -74,15 +80,16 @@ html(lang="vi")
 
       .icon-wrap .ti {
         font-size: 32px;
-        color: #534AB7;
+        color: #c2410c;
       }
 
       .error-code {
+        font-family: "Outfit", sans-serif;
         font-size: 96px;
-        font-weight: 500;
+        font-weight: 800;
         line-height: 1;
         margin-bottom: 0.5rem;
-        background: linear-gradient(135deg, #534AB7, #1D9E75);
+        background: linear-gradient(135deg, #ea580c, #9a3412);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -94,16 +101,17 @@ html(lang="vi")
         width: 48px;
         height: 3px;
         border-radius: 99px;
-        background: linear-gradient(90deg, #534AB7, #1D9E75);
+        background: linear-gradient(90deg, #ea580c, #fb923c);
         margin-bottom: 1.5rem;
         position: relative;
         z-index: 1;
       }
 
       .error-title {
+        font-family: "Outfit", sans-serif;
         font-size: 22px;
-        font-weight: 500;
-        color: #1a1a1a;
+        font-weight: 700;
+        color: #1c1917;
         margin-bottom: 0.75rem;
         position: relative;
         z-index: 1;
@@ -111,7 +119,7 @@ html(lang="vi")
 
       .error-desc {
         font-size: 15px;
-        color: #6b6b6b;
+        color: #78716c;
         line-height: 1.7;
         max-width: 340px;
         margin-bottom: 2rem;
@@ -123,19 +131,21 @@ html(lang="vi")
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        padding: 10px 24px;
-        border-radius: 8px;
-        background: #534AB7;
+        padding: 12px 24px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #ea580c, #c2410c);
         color: #fff;
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 700;
+        font-family: "Outfit", sans-serif;
         text-decoration: none;
-        transition: opacity 0.15s, transform 0.1s;
+        box-shadow: 0 10px 24px rgba(194, 65, 12, 0.3);
+        transition: filter 0.15s, transform 0.15s;
         position: relative;
         z-index: 1;
       }
 
-      .btn-home:hover { opacity: 0.85; }
+      .btn-home:hover { filter: brightness(1.05); }
       .btn-home:active { transform: scale(0.97); }
       .btn-home .ti { font-size: 16px; }
 

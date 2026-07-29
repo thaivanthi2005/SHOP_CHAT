@@ -2,8 +2,7 @@ extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 
 block main
-  .container.my-3
-
+  .container.page-shell
     include ../../partials/list-btn-users.pug
 
     .row
@@ -13,13 +12,13 @@ block main
     .row
       each user in users
         .col-md-6
-          div(class="box-user add")
-            div(class="inner-avatar")
+          .box-user.add
+            .inner-avatar
               img(src=(user.avatar ? user.avatar : "/images/default.jpg"), alt=user.fullName)
-            div(class="inner-info")
-              div(class="inner-name") #{user.fullName}
-              div(class="inner-buttons")
-                button(class="btn btn-sm btn-primary mr-1", btn-add-friend=user.id) Thêm bạn
-                button(class="btn btn-sm btn-secondary mr-1", btn-cancel-friend=user.id) Hủy
+            .inner-info
+              .inner-name #{user.fullName}
+              .inner-buttons
+                button.btn.btn-sm.btn-primary(btn-add-friend=user.id) Thêm bạn
+                button.btn.btn-sm.btn-secondary(btn-cancel-friend=user.id) Hủy
 block scripts
   script(type="module" src="/js/users.js")

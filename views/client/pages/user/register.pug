@@ -4,43 +4,35 @@ include ../../mixins/alert.pug
 block main
   +alert(success, error)
 
-  .container.my-5
-    .row.justify-content-center
-      .col-8
-        h1(class="text-center") Đăng ký tài khoản
+  .auth-page
+    .container
+      .auth-card
+        h1 Đăng ký tài khoản
+        p.auth-sub Tạo tài khoản để mua sắm nhanh hơn
 
-        form(
-          action="/user/register"
-          method="POST"
-        )
-          div(class="form-group")
+        form(action="/user/register" method="POST")
+          .form-group
             label(for="fullName") Họ và tên
-            input(
+            input#fullName.form-control(
               type="text"
-              class="form-control"
-              id="fullName"
               name="fullName"
               required
             )
 
-          div(class="form-group")
+          .form-group
             label(for="email") Email
-            input(
+            input#email.form-control(
               type="email"
-              class="form-control"
-              id="email"
               name="email"
               required
             )
 
-          div(class="form-group")
+          .form-group
             label(for="password") Mật khẩu
-            input(
+            input#password.form-control(
               type="password"
-              class="form-control"
-              id="password"
               name="password"
               required
             )
 
-          button(type="submit" class="btn btn-primary btn-block") Đăng ký
+          button.btn.btn-primary.btn-block(type="submit") Đăng ký

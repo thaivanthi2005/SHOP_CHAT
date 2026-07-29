@@ -3,65 +3,61 @@ include ../../mixins/alert.pug
 include ../../mixins/box-head.pug
 
 block main
-  .container.my-3
+  .container.page-shell
     .row
       .col-12
-        .box-head
-          +box-head(pagetitle)
-        .box-body
-          .row
-            .col-12
-              .card.mb-3
-                .card-body
-                  form(action="/user/info/update" method="POST" enctype="multipart/form-data")
-                    .row.align-items-center
-                      .col-4.text-center
-                        div(upload-image)
-                          img(
-                            src=user.avatar ? user.avatar : "/images/default.jpg"
-                            alt="avatar"
-                            class="rounded-circle mb-2"
-                            width="150"
-                            height="150"
-                            style="object-fit:cover"
-                            upload-image-preview
-                          )
-                          .mt-2
-                            label.btn.btn-sm.btn-outline-secondary(for="avatar") Đổi ảnh
-                            input(
-                              type="file"
-                              id="avatar"
-                              name="avatar"
-                              accept="image/*"
-                              style="display:none"
-                              upload-image-input
-                            )
+        +box-head(pagetitle)
 
-                      .col-8
-                        .mb-3
-                          label.form-label Họ và tên
-                          input.form-control(
-                            type="text"
-                            name="fullName"
-                            value=user.fullName
-                            placeholder="Nhập họ và tên"
-                          )
-                        .mb-3
-                          label.form-label Email
-                          input.form-control(
-                            type="email"
-                            name="email"
-                            value=user.email
-                            placeholder="Nhập email"
-                          )
-                        .mb-3
-                          label.form-label Số điện thoại
-                          input.form-control(
-                            type="text"
-                            name="phone"
-                            value=user.phone
-                            placeholder="Nhập số điện thoại"
-                          )
-                        button.btn.btn-primary(type="submit") Lưu thay đổi
+    .profile-card
+      form(action="/user/info/update" method="POST" enctype="multipart/form-data")
+        .row.align-items-center
+          .col-md-4.text-center.mb-4.mb-md-0
+            div(upload-image)
+              img.rounded-circle.mb-2(
+                src=user.avatar ? user.avatar : "/images/default.jpg"
+                alt="avatar"
+                width="150"
+                height="150"
+                style="object-fit:cover"
+                upload-image-preview
+              )
+              .mt-2
+                label.btn.btn-sm.btn-outline-secondary(for="avatar") Đổi ảnh
+                input(
+                  type="file"
+                  id="avatar"
+                  name="avatar"
+                  accept="image/*"
+                  style="display:none"
+                  upload-image-input
+                )
+
+          .col-md-8
+            .mb-3
+              label.form-label Họ và tên
+              input.form-control(
+                type="text"
+                name="fullName"
+                value=user.fullName
+                placeholder="Nhập họ và tên"
+              )
+            .mb-3
+              label.form-label Email
+              input.form-control(
+                type="email"
+                name="email"
+                value=user.email
+                placeholder="Nhập email"
+              )
+            .mb-3
+              label.form-label Số điện thoại
+              input.form-control(
+                type="text"
+                name="phone"
+                value=user.phone
+                placeholder="Nhập số điện thoại"
+              )
+            button.btn.btn-primary(type="submit") Lưu thay đổi
+
 block scripts
   script(type="module" src="/js/user.js")

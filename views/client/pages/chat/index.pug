@@ -2,46 +2,47 @@ extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 
 block main
-  .row
-    .col-12
-      +box-head("Chat")
-  include ../../partials/list-btn-users.pug
-  .row
-    .col-12
-      .chat(my-id=user.id)
-        .inner-head
-          .inner-avatar TC
-          .inner-name Phòng chat chung
-        .inner-body
-          each chat in chats
-            div(class=(chat.user_id == user.id ? 'inner-outgoing' : 'inner-incoming'))
-              if(chat.userId !== user.id)
-                .inner-name #{chat.infoUser.fullName}
-              if(chat.content)
-                .inner-content
-                  | #{chat.content}
-              if(chat.images)
-                .inner-images
-                  each image in chat.images
-                    img(src=image)
-          div(class="inner-list-typing")
-        .inner-preview-images
-          div(class="custom-file-container" data-upload-id="my-unique-id")
-        .inner-foot
-          form.inner-form(action="")
-            input(
-              type="text"
-              name="content"
-              class="inner-input"
-              placeholder="Nhập nội dung..."
-            )
-            label(class="btn btn-light mx-2" for="file-upload-with-preview-my-unique-id")
-              i.fa-regular.fa-image
-            span(class="button-icon") 
-              i.fa-regular.fa-face-smile
-                div(class="tooltip" role="tooltip")
-                  emoji-picker
-            button
+  .container.page-shell.chat-page
+    .row
+      .col-12
+        +box-head("Chat")
+    include ../../partials/list-btn-users.pug
+    .row
+      .col-12
+        .chat(my-id=user.id)
+          .inner-head
+            .inner-avatar TC
+            .inner-name Phòng chat chung
+          .inner-body
+            each chat in chats
+              div(class=(chat.user_id == user.id ? 'inner-outgoing' : 'inner-incoming'))
+                if(chat.userId !== user.id)
+                  .inner-name #{chat.infoUser.fullName}
+                if(chat.content)
+                  .inner-content
+                    | #{chat.content}
+                if(chat.images)
+                  .inner-images
+                    each image in chat.images
+                      img(src=image)
+            div(class="inner-list-typing")
+          .inner-preview-images
+            div(class="custom-file-container" data-upload-id="my-unique-id")
+          .inner-foot
+            form.inner-form(action="")
+              input(
+                type="text"
+                name="content"
+                class="inner-input"
+                placeholder="Nhập nội dung..."
+              )
+              label(class="btn btn-light mx-2" for="file-upload-with-preview-my-unique-id")
+                i.fa-regular.fa-image
+              span(class="button-icon")
+                i.fa-regular.fa-face-smile
+                  div(class="tooltip" role="tooltip")
+                    emoji-picker
+              button
                 i.fa-solid.fa-paper-plane
 block scripts
   script(type="module" src="/js/chat.js")

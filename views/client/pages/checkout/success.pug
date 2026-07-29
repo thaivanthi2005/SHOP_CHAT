@@ -4,61 +4,64 @@ include ../../mixins/alert.pug
 
 block main
   +alert(success, error)
-  .container.my-3
+  .container.page-shell
     .row
       .col-12
         +box-head("ĐẶT HÀNG THÀNH CÔNG")
 
     .row
       .col-12
-        .alert.alert-success
+        .success-banner
           | Chúc mừng bạn đã đặt hàng thành công! Chúng tôi sẽ xử lý đơn hàng trong thời gian sớm nhất.
 
     .row
       .col-12
-        h4(class="mb-2") Thông tin cá nhân
-        table(class="table table-bordered")
-          tbody
-            tr
-              td Họ tên
-              td
-                b #{order.userInfo.fullName}
-            tr
-              td Số điện thoại
-              td
-                b #{order.userInfo.phone}
-            tr
-              td Địa chỉ
-              td
-                b #{order.userInfo.address}
+        .page-panel.mb-4
+          h4.mb-3 Thông tin cá nhân
+          table.table.table-bordered
+            tbody
+              tr
+                td Họ tên
+                td
+                  b #{order.userInfo.fullName}
+              tr
+                td Số điện thoại
+                td
+                  b #{order.userInfo.phone}
+              tr
+                td Địa chỉ
+                td
+                  b #{order.userInfo.address}
 
     .row
       .col-12
-        h4(class="mb-2") Thông tin đơn hàng
-        table(class="table table-bordered")
-          thead
-            tr
-              th STT
-              th Ảnh
-              th Tên
-              th Giá
-              th Số lượng
-              th Tổng tiền
-          tbody
-            if order.products.length > 0
-              each item, index in order.products
-                tr
-                  td #{index + 1}
-                  td
-                    img(
-                      src=item.productInfo.thumbnail
-                      alt=item.productInfo.title
-                      width="80px"
-                    )
-                  td #{item.productInfo.title}
-                  td #{item.price}$
-                  td #{item.quantity}
-                  td #{item.totalPrice}$
+        .page-panel
+          h4.mb-3 Thông tin đơn hàng
+          table.table.table-bordered
+            thead
+              tr
+                th STT
+                th Ảnh
+                th Tên
+                th Giá
+                th Số lượng
+                th Tổng tiền
+            tbody
+              if order.products.length > 0
+                each item, index in order.products
+                  tr
+                    td #{index + 1}
+                    td
+                      img(
+                        src=item.productInfo.thumbnail
+                        alt=item.productInfo.title
+                        width="80"
+                      )
+                    td #{item.productInfo.title}
+                    td #{item.price}$
+                    td #{item.quantity}
+                    td #{item.totalPrice}$
 
-        if order.products.length > 0
-          h3(class="text-right") Tổng đơn hàng: #{order.totalPrice}$
+          if order.products.length > 0
+            .checkout-summary
+              h3.order-total Tổng đơn hàng: #{order.totalPrice}$

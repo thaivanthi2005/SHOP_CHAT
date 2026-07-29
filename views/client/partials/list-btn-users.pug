@@ -1,9 +1,8 @@
-.row
-    .col-12
-        a(href="/users/not-friend" class="btn btn-primary mb-1") DANH SÁCH NGƯỜI DÙNG
-        a(href="/users/friends" class="btn btn-secondary mb-1") DANH SÁCH BẠN BÈ
-        a(href="/users/requests" class="btn btn-info mb-1") LỜI MỜI ĐÃ GỬI
-        a(href="/users/accept" class="btn btn-danger mb-1")
-            | LỜI MỜI KẾT BẠN
-            if(user.acceptFriends)
-                span(class="badge badge-light" badge-users-accept=user.id) #{user.acceptFriends.length}
+.users-nav
+  a.btn.btn-primary(href="/users/not-friend") DANH SÁCH NGƯỜI DÙNG
+  a.btn.btn-secondary(href="/users/friends") DANH SÁCH BẠN BÈ
+  a.btn.btn-info(href="/users/requests") LỜI MỜI ĐÃ GỬI
+  a.btn.btn-danger(href="/users/accept")
+    | LỜI MỜI KẾT BẠN
+    if(user.acceptFriends)
+      span.badge.badge-light(badge-users-accept=user.id) #{user.acceptFriends.length}

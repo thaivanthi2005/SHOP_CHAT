@@ -1,32 +1,86 @@
 extends ../../layouts/default.pug
 
-block main 
-      .container.my-3
-            h1 TRANG CHỦ
-            h2 Sản phẩm nổi bật
-            .row
-                  each item in product_featured
-                        .col-3.mb-3
-                              .product-item
-                                    a(href=`/products/detail/${item.id}`)
-                                          .inner-image 
-                                                img(src=item.thumbnail, alt=item.title)
-                                          .inner-content
-                                                h3.inner-title #{item.title}
-                                                .inner-price-new #{item.pricenew}đ
-                                                .inner-price-old #{item.price}đ
-                                                .inner-discount -#{item.discountPercentage}%
-                                                .inner-featured Nổi bật
-            h2 Sản phẩm mới
-            .row
-                  each item in product_new
-                        .col-3.mb-3
-                              .product-item
-                                    a(href=`/products/detail/${item.id}`)
-                                          .inner-image 
-                                                img(src=item.thumbnail, alt=item.title)
-                                          .inner-content
-                                                h3.inner-title #{item.title}
-                                                .inner-price-new #{item.pricenew}đ
-                                                .inner-price-old #{item.price}đ
-                                                .inner-discount -#{item.discountPercentage}%
+block main
+  -
+    const heroProducts = []
+    if (product_featured && product_featured.length) {
+      product_featured.forEach((item) => heroProducts.push(item))
+    }
+    if (heroProducts.length < 6 && product_new && product_new.length) {
+      product_new.forEach((item) => {
+        if (heroProducts.length < 8) heroProducts.push(item)
+      })
+    }
+
+  section.home-hero
+    .home-hero__media(aria-hidden="true")
+    .home-hero__inner
+      .home-hero__copy
+        span.home-hero__brand #{settings.websiteName}
+        p.home-hero__text Khám phá sản phẩm nổi bật và mới nhất với trải nghiệm mua sắm hiện đại, nhanh chóng.
+        a.home-hero__cta(href="/products") Xem sản phẩm
+
+      if heroProducts.length
+        .home-hero__stage(data-hero-carousel)
+          .hero-carousel
+            .hero-carousel__track(data-hero-track)
+              each item, index in heroProducts
+                a.hero-carousel__item(
+                  href=`/products/detail/${item.id}`
+                  data-hero-item
+                  data-index=index
+                  aria-label=item.title
+                )
+                  .hero-carousel__visual
+                    img(src=item.thumbnail, alt=item.title, loading=index === 0 ? "eager" : "lazy")
+                  .hero-carousel__meta
+                    span.hero-carousel__name #{item.title}
+                    span.hero-carousel__price #{item.pricenew}đ
+            .hero-carousel__glow(aria-hidden="true")
+          .hero-carousel__controls
+            button.hero-carousel__btn(type="button" data-hero-prev aria-label="Sản phẩm trước")
+              i.fas.fa-chevron-left(aria-hidden="true")
+            .hero-carousel__dots(data-hero-dots)
+              each item, index in heroProducts
+                button.hero-carousel__dot(
+                  type="button"
+                  data-hero-dot=index
+                  aria-label=`Sản phẩm ${index + 1}`
+                  class=index === 0 ? "is-active" : ""
+                )
+            button.hero-carousel__btn(type="button" data-hero-next aria-label="Sản phẩm tiếp theo")
+              i.fas.fa-chevron-right(aria-hidden="true")
+
+  .container
+    section.home-section
+      .home-section__head
+        h2.home-section__title Sản phẩm nổi bật
+        a.home-section__link(href="/products") Xem tất cả
+      .product-grid
+        each item in product_featured
+          .product-item
+            a(href=`/products/detail/${item.id}`)
+              .inner-image
+                img(src=item.thumbnail, alt=item.title)
+              .inner-content
+                h3.inner-title #{item.title}
+                .inner-price-new #{item.pricenew}đ
+                .inner-price-old #{item.price}đ
+                .inner-discount -#{item.discountPercentage}%
+                .inner-featured Nổi bật
+
+    section.home-section
+      .home-section__head
+        h2.home-section__title Sản phẩm mới
+        a.home-section__link(href="/products") Khám phá thêm
+      .product-grid
+        each item in product_new
+          .product-item
+            a(href=`/products/detail/${item.id}`)
+              .inner-image
+                img(src=item.thumbnail, alt=item.title)
+              .inner-content
+                h3.inner-title #{item.title}
+                .inner-price-new #{item.pricenew}đ
+                .inner-price-old #{item.price}đ
+                .inner-discount -#{item.discountPercentage}%

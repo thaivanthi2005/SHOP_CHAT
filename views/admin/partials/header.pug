@@ -1,11 +1,9 @@
 header.header
-  .container-fluid
-    .row.align-items-center
-      .col-3
-        .inner-logo
-          a(href="/admin/dashboard") ADMIN
-      .col-9
-        div(class="text-right")
-          a(href="/admin/my-account" class="btn btn-sm btn-primary") #{user.fullName}
-          a(href="/admin/auth/logout" class="btn btn-sm btn-danger ml-2") Logout
-          
+  .header-inner
+    .header-brand
+      a(href="/admin/dashboard")
+        span.header-brand__mark A
+        span.header-brand__text ADMIN
+    .header-actions
+      a.header-user(href="/admin/my-account") #{user.fullName}
+      a.header-logout(href="/admin/auth/logout") Logout

@@ -4,80 +4,74 @@ include ../../mixins/alert.pug
 
 block main
   +alert(success, error)
-  .container.my-3
+  .container.page-shell
     .row
       .col-12
         +box-head("ĐẶT HÀNG")
 
     .row
-        .col-12
-            if productInfo && productInfo.length > 0
-            table(class="table table-bordered")
-                thead
+      .col-12
+        if productInfo && productInfo.length > 0
+          .page-panel
+            table.table.table-bordered
+              thead
                 tr
-                    th STT
-                    th Ảnh
-                    th Tên
-                    th Giá
-                    th Số lượng
-                    th Tổng tiền
-                tbody
+                  th STT
+                  th Ảnh
+                  th Tên
+                  th Giá
+                  th Số lượng
+                  th Tổng tiền
+              tbody
                 each item, index in productInfo
-                    tr
+                  tr
                     td= index + 1
                     td
-                        img(src=item.thumbnail style="width: 80px")
+                      img(src=item.thumbnail style="width: 80px" alt=item.title)
                     td
-                        a= item.title
+                      a= item.title
                     td
-                        del= item.price + ' VNĐ'
-                        |  → 
-                        strong= item.pricenew + ' VNĐ'
+                      del= item.price + ' VNĐ'
+                      |  → 
+                      strong= item.pricenew + ' VNĐ'
                     td= item.quantity
                     td= item.pricenew * item.quantity + ' VNĐ'
-                else
-                     p.text-center.mt-4 Chưa có sản phẩm nào trong giỏ hàng.
-            h3(class="text-right mt-3")
+
+            .checkout-summary
+              h3.order-total
                 | Tổng đơn hàng: 
                 strong= productInfo.reduce((total, item) => total + item.pricenew * item.quantity, 0) + ' VNĐ'
-            
-            if productInfo && productInfo.length > 0
-                form(action="/checkout/order" method="POST" class="mt-4 p-4 border rounded")
-                    .form-group
-                    label Họ tên
-                    input(
-                        type="text"
-                        name="fullName"
-                        id="fullName"
-                        class="form-control"
-                        placeholder="Nhập họ tên"
-                        required
-                    )
 
-                    .form-group.mt-3
-                    label Số điện thoại
-                    input(
-                        type="text"
-                        id="phone"
-                        name="phone"
-                        class="form-control"
-                        placeholder="Nhập số điện thoại"
-                        required
-                    )
+            form.checkout-form(action="/checkout/order" method="POST")
+              .form-group
+                label(for="fullName") Họ tên
+                input#fullName.form-control(
+                  type="text"
+                  name="fullName"
+                  placeholder="Nhập họ tên"
+                  required
+                )
 
-                    .form-group.mt-3
-                    label Địa chỉ
-                    input(
-                        type="text"
-                        id="address"
-                        name="address"
-                        class="form-control"
-                        placeholder="Nhập địa chỉ"
-                        required
-                    )
+              .form-group
+                label(for="phone") Số điện thoại
+                input#phone.form-control(
+                  type="text"
+                  name="phone"
+                  placeholder="Nhập số điện thoại"
+                  required
+                )
 
-                    button(
-                    type="submit"
-                    class="btn btn-success btn-block mt-4 w-100"
-                    style="background-color: #28a745; font-weight: bold;"
-                    ) ĐẶT HÀNG
+              .form-group
+                label(for="address") Địa chỉ
+                input#address.form-control(
+                  type="text"
+                  name="address"
+                  placeholder="Nhập địa chỉ"
+                  required
+                )
+
+              button.btn.btn-success.btn-block.w-100.mt-2(type="submit") ĐẶT HÀNG
+        else
+          .empty-state
+            p Chưa có sản phẩm nào trong giỏ hàng.
+            a(href="/products") Quay lại mua sắm

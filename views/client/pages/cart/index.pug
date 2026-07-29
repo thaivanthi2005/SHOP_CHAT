@@ -4,7 +4,7 @@ include ../../mixins/alert.pug
 
 block main
   +alert(success, error)
-  .container.my-3
+  .container.page-shell
     .row
       .col-12
         +box-head("Giỏ hàng")
@@ -12,51 +12,49 @@ block main
     .row
       .col-12
         if productInfo && productInfo.length > 0
-          table(class="table table-bordered")
-            thead
-              tr
-                th STT
-                th Ảnh
-                th Tên
-                th Giá
-                th Số lượng
-                th Tổng tiền
-                th Hành động
-            tbody
-              each item, index in productInfo
+          .page-panel
+            table.table.table-bordered
+              thead
                 tr
-                  td= index + 1
-                  td
-                    img(src=item.thumbnail style="width: 80px")
-                  td
-                    a(href=`/products/detail/${item._id}`)= item.title
-                  td
-                    del= item.price + ' VNĐ'
-                    |  → 
-                    strong= item.pricenew + ' VNĐ'
-                  td
-                    input(
-                      type="number"
-                      name="quantity"
-                      value=item.quantity
-                      min="1"
-                      product_Id=`${item._id}`
-                      style="width: 60px"
-                    )
-                  td= item.pricenew * item.quantity + ' VNĐ'
-                  td
-                    a(
-                      href=`/cart/delete/${item._id}`
-                      class="btn btn-danger"
-                    ) Xóa
+                  th STT
+                  th Ảnh
+                  th Tên
+                  th Giá
+                  th Số lượng
+                  th Tổng tiền
+                  th Hành động
+              tbody
+                each item, index in productInfo
+                  tr
+                    td= index + 1
+                    td
+                      img(src=item.thumbnail style="width: 80px" alt=item.title)
+                    td
+                      a(href=`/products/detail/${item._id}`)= item.title
+                    td
+                      del= item.price + ' VNĐ'
+                      |  → 
+                      strong= item.pricenew + ' VNĐ'
+                    td
+                      input.quantity-input(
+                        type="number"
+                        name="quantity"
+                        value=item.quantity
+                        min="1"
+                        product_Id=`${item._id}`
+                        style="width: 72px"
+                        aria-label="Số lượng"
+                      )
+                    td= item.pricenew * item.quantity + ' VNĐ'
+                    td
+                      a.btn.btn-danger.btn-sm(href=`/cart/delete/${item._id}`) Xóa
 
-          h3(class="text-right mt-3")
-            | Tổng đơn hàng: 
-            strong= productInfo.reduce((total, item) => total + item.pricenew * item.quantity, 0) + ' VNĐ'
-
-          div(class="text-right mt-3")
-            a(href="/checkout" class="btn btn-success") THANH TOÁN
-
+            .cart-summary
+              h3
+                | Tổng đơn hàng: 
+                strong= productInfo.reduce((total, item) => total + item.pricenew * item.quantity, 0) + ' VNĐ'
+              a.btn.btn-success(href="/checkout") THANH TOÁN
         else
-          p.text-center.mt-4 Giỏ hàng của bạn đang trống.
-
+          .empty-state
+            p Giỏ hàng của bạn đang trống.
+            a(href="/products") Tiếp tục mua sắm

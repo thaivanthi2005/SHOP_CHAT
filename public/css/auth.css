@@ -1,73 +1,136 @@
-/* ===== REGISTER PAGE ===== */
-
-h1.text-center {
-  font-size: 26px;
-  font-weight: 800;
-  color: #1a1a2e;
-  margin-bottom: 28px;
-  letter-spacing: -0.4px;
+/* ===== AUTH PAGES ===== */
+.auth-page {
+  padding: 48px 0 64px;
 }
 
-/* ===== FORM GROUP ===== */
+.auth-card {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ea580c, #fb923c);
+}
+
+.auth-card h1,
+h1.text-center {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin: 0 0 8px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.auth-card .auth-sub {
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 14px;
+  margin: 0 0 28px;
+}
+
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .form-group label {
   display: block;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 600;
-  color: #374151;
+  color: #44403c;
   margin-bottom: 7px;
 }
 
-/* ===== INPUT ===== */
 .form-control {
   width: 100%;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 10px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
   padding: 12px 16px;
   font-size: 14px;
-  color: #1a1a2e;
-  background: #fafbff;
+  color: var(--color-ink);
+  background: #fff;
   outline: none;
-  transition: all 0.25s;
+  transition: all 0.2s ease;
   font-family: inherit;
 }
 
 .form-control::placeholder {
-  color: #b0b8cc;
+  color: #a8a29e;
 }
 
 .form-control:focus {
-  border-color: #1251c9;
-  background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(18, 81, 201, 0.1);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15);
+  background: #fff;
 }
 
-/* ===== NÚT ĐĂNG KÝ ===== */
-.btn.btn-primary.btn-block {
+.btn.btn-primary.btn-block,
+.auth-card .btn-primary {
   width: 100%;
-  background: linear-gradient(135deg, #1251c9 0%, #3b6ee8 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+  color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 999px;
   padding: 13px;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
   margin-top: 8px;
-  transition: all 0.25s;
-  box-shadow: 0 8px 24px rgba(18, 81, 201, 0.3);
-  font-family: inherit;
-  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 24px rgba(194, 65, 12, 0.3);
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
 }
 
-.btn.btn-primary.btn-block:hover {
+.btn.btn-primary.btn-block:hover,
+.auth-card .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(18, 81, 201, 0.42);
+  filter: brightness(1.05);
+  box-shadow: 0 14px 28px rgba(194, 65, 12, 0.38);
 }
 
 .btn.btn-primary.btn-block:active {
   transform: translateY(0);
+}
+
+.auth-card a {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.auth-card a:hover {
+  color: var(--color-primary-strong);
+}
+
+.auth-links {
+  margin-top: 16px;
+  text-align: center;
+}
+
+/* ===== PROFILE ===== */
+.profile-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 28px;
+}
+
+.profile-card img[upload-image-preview],
+.profile-card .rounded-circle {
+  border: 3px solid #fff;
+  box-shadow: 0 10px 24px rgba(28, 25, 23, 0.12);
 }

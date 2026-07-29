@@ -1,49 +1,92 @@
-/* ===== FRIEND / USER CARD (add / cancel / accept / refuse states) ===== */
-.box-user {
+/* ===== FRIEND / USER / ROOM ===== */
+.users-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.users-nav .btn {
+  margin: 0 !important;
+  border-radius: 999px !important;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.users-nav .badge {
+  margin-left: 6px;
+  border-radius: 999px;
+  background: #fff !important;
+  color: var(--color-primary) !important;
+}
+
+.box-user,
+.box-room {
   display: flex;
   align-items: center;
-  gap: 20px;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 1.25rem 1.5rem;
+  gap: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  margin-bottom: 16px;
 }
 
-.box-user .inner-avatar img {
+.box-user:hover,
+.box-room:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: #fdba74;
+}
+
+.box-user .inner-avatar img,
+.box-room .inner-avatar img {
   width: 72px;
   height: 72px;
-  border-radius: 50%;
+  border-radius: 18px;
   object-fit: cover;
-  border: 2px solid #e5e7eb;
+  border: 2px solid #fff;
+  box-shadow: 0 8px 18px rgba(28, 25, 23, 0.1);
   flex-shrink: 0;
+  background: #f5f5f4;
 }
 
-.box-user .inner-info {
+.box-user .inner-info,
+.box-room .inner-info {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-width: 0;
+  flex: 1;
 }
 
-.box-user .inner-name {
-  font-size: 18px;
-  font-weight: 500;
-  color: #111827;
+.box-user .inner-name,
+.box-room .inner-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-ink);
+  font-family: var(--font-display);
 }
 
-.box-user .inner-buttons {
+.box-user .inner-buttons,
+.box-room .inner-buttons {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-/* default: show "add friend", hide the rest */
 .box-user [btn-cancel-friend],
 .box-user [btn-deleted-friend],
 .box-user [btn-accepted-friend] {
   display: none;
 }
 
-/* state: request sent */
 .box-user.add [btn-add-friend] {
   display: none;
 }
@@ -51,7 +94,6 @@
   display: inline-block;
 }
 
-/* state: refused */
 .box-user.refuse [btn-accept-friend],
 .box-user.refuse [btn-refuse-friend] {
   display: none;
@@ -60,7 +102,6 @@
   display: inline-block;
 }
 
-/* state: accepted */
 .box-user.accepted [btn-accept-friend],
 .box-user.accepted [btn-refuse-friend] {
   display: none;
@@ -69,19 +110,37 @@
   display: inline-block;
 }
 
-/* ONLINE STATUS */
 .box-user .inner-status {
   font-size: 12px;
-  color: #00d800;
+  color: #16a34a;
   opacity: 0;
+  font-weight: 600;
 }
 
 .box-user .inner-status[status="online"] {
   opacity: 1;
 }
 
+.room-create-form {
+  max-width: 640px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+}
+
+.room-create-form .form-check {
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  background: #fafaf9;
+}
+
 @media (max-width: 576px) {
-  .box-user {
+  .box-user,
+  .box-room {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;

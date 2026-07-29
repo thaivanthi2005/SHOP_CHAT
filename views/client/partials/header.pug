@@ -13,6 +13,7 @@ header.header
                         placeholder="Nhập từ khóa..."
                         class="search-input"
                         name="keyword"
+                        aria-label="Tìm kiếm"
                     )
                     button(type="submit" class="search-btn") Tìm
         .header-nav
@@ -26,12 +27,12 @@ header.header
                             +subMenu(layoutcategory)
                     li
                         a.cart-link(href="/cart")
-                            i.fas.fa-shopping-cart
+                            i.fas.fa-shopping-cart(aria-hidden="true")
                             span GIỎ HÀNG
                             span.cart-badge #{total_quantity}
                     if(user)
                         li
-                            a(href='/user/info') #{user.fullName}
+                            a.header-link-user(href='/user/info') #{user.fullName}
                         li
                             a(href='/user/logout') ĐĂNG XUẤT
                         li 
@@ -40,7 +41,6 @@ header.header
                             a(href='/rooms-chat') PHÒNG CHAT
                     else
                         li
-                            a(href='/user/login') ĐĂNG NHẬP
+                            a.header-link-login(href='/user/login') ĐĂNG NHẬP
                         li
-                            a(href='/user/register') ĐĂNG KÝ
-                        
+                            a.header-link-register(href='/user/register') ĐĂNG KÝ

@@ -4,35 +4,31 @@ include ../../mixins/alert.pug
 block main
   +alert(success, error)
 
-  .container.my-5
-    .row.justify-content-center
-      .col-8
-        h1(class="text-center") Đăng nhập
+  .auth-page
+    .container
+      .auth-card
+        h1 Đăng nhập
+        p.auth-sub Chào mừng bạn quay lại
 
-        form(
-          action="/user/login"
-          method="POST"
-        )
-
-          div(class="form-group")
+        form(action="/user/login" method="POST")
+          .form-group
             label(for="email") Email
-            input(
+            input#email.form-control(
               type="email"
-              class="form-control"
-              id="email"
               name="email"
               required
             )
 
-          div(class="form-group")
+          .form-group
             label(for="password") Mật khẩu
-            input(
+            input#password.form-control(
               type="password"
-              class="form-control"
-              id="password"
               name="password"
               required
             )
-          div(class="form-group")
-            button(type="submit" class="btn btn-primary btn-block") Đăng Nhập
-          a(href="/user/password/forgot") Quên mật khẩu?
+
+          .form-group
+            button.btn.btn-primary.btn-block(type="submit") Đăng Nhập
+
+          .auth-links
+            a(href="/user/password/forgot") Quên mật khẩu?

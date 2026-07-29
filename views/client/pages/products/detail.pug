@@ -1,5 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+
 block main
   +alert(success, error)
   .product-detail
@@ -34,6 +35,7 @@ block main
               value="1"
               min="1"
               max=product.stock
+              aria-label="Số lượng"
             )
             button.btn-add-cart(type="submit") Thêm vào giỏ hàng
 

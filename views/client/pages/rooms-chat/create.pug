@@ -2,42 +2,38 @@ extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 
 block main
-  .container.my-3
+  .container.page-shell
     .row
       .col-12
         +box-head("Tạo phòng")
 
     .row
       .col-12
-        form(
+        form.room-create-form(
           action=`/rooms-chat/create`
           method="POST"
         )
-          div(class="form-group")
+          .form-group
             label(for="title") Tiêu đề
-            input(
+            input#title.form-control(
               type="text"
-              class="form-control"
-              id="title"
               name="title"
               required
             )
 
-          div(class="form-group")
+          .form-group
             label Thêm thành viên
             each friend in friendList
-              div(class="form-check")
-                input(
-                  class="form-check-input"
+              .form-check
+                input.form-check-input(
                   type="checkbox"
                   value=friend.user_id
                   id=`user-${friend.user_id}`
                   name="usersId"
                 )
-                label(
-                  class="form-check-label"
+                label.form-check-label(
                   for=`user-${friend.user_id}`
                 )= friend.infoFriend.fullName
 
-          div(class="form-group mt-3")
-            button(type="submit" class="btn btn-primary") Tạo phòng
+          .form-group.mt-3
+            button.btn.btn-primary(type="submit") Tạo phòng

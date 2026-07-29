@@ -7,8 +7,9 @@ include ../../mixins/form-change-multi.pug
 include ../../mixins/sort.pug
 block main
     if(roles.permissions.includes("products_view"))
-        +alert(success, error)
-        h1.mb-4 DANH SÁCH SẢN PHẨM
+        .admin-page
+            +alert(success, error)
+            h1.page-title Danh sách sản phẩm
             .card.mb-3
                 .card-header Bộ lọc và Tìm kiếm
                 .card-body
@@ -16,19 +17,16 @@ block main
                         .col-4
                             +form-sort()
                         .col-4
-                            +filterStatus(category)   
+                            +filterStatus(category)
                         .col-4
                             +search(keyword)
 
-
-                
             .card.mb-3
                 .card-body
-                    
                     .card.mb-3
                         .card-header Danh sách
                         .card-body
-                            .row 
+                            .row
                                 .col-8
                                     +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
                                 .col-4
@@ -48,7 +46,7 @@ block main
                                 th.text-center Trạng thái
                                 th.text-center Người tạo
                                 th.text-center Hành động
-                                
+
                         tbody
                             each val,index in products
                                 tr
@@ -63,60 +61,61 @@ block main
                                         img.img-thumbnail(
                                             width="80",
                                             src=val.thumbnail
+                                            alt=val.title
                                         )
                                     td #{val.title}
                                     td.text-center #{val.price}
                                     td
                                         input(
                                             type="number"
-                                            value = val.position  
-                                            style ="width: 60px;"
-                                            name = "position"
+                                            value=val.position
+                                            style="width: 60px;"
+                                            name="position"
                                         )
                                     td
                                         if(val.status == "InStock")
                                             a(href="javascript:;"
-                                            data-status = "InStock"
-                                            data-id = val.id
+                                            data-status="InStock"
+                                            data-id=val.id
                                             button-change-status
                                             class="badge badge-success") Còn hàng
                                         else
                                             a(href="javascript:;"
-                                            data-status = "OutStock"
-                                            data-id = val.id
+                                            data-status="OutStock"
+                                            data-id=val.id
                                             button-change-status
                                             class="badge badge-danger") Hết hàng
                                     td.text-center
                                         if val.createdBy.account_id && val.createdBy.createdAt
                                             |#{accounts.fullName} - #{moment(parseInt(val.createdBy.createdAt)).format('DD/MM/YYYY')}
                                         else
-                                            |Chưa có dữ liệu                                    
+                                            |Chưa có dữ liệu
                                     td.text-center
                                         a(class="btn btn-warning btn-sm"
-                                        href = `${prefixAdmin}/products/edit/${val.id}`
+                                        href=`${prefixAdmin}/products/edit/${val.id}`
                                         ) Sửa
                                         a(
                                             class="btn btn-info btn-sm ml-1"
-                                            href = `${prefixAdmin}/products/detail/${val.id}`
+                                            href=`${prefixAdmin}/products/detail/${val.id}`
                                         ) Chi tiết
                                         if(roles.permissions.includes("products_delete"))
                                             button(class="btn btn-danger btn-sm ml-1",
-                                            data-id = val.id,
+                                            data-id=val.id,
                                             button-delete) Xóa
-        +pagination(pagination)
+            +pagination(pagination)
 
-        form(
-            action="",
-            method="POST",
-            id="form-change-status",
-            data-path=`${prefixAdmin}/products/change-status`
-        )
+            form(
+                action="",
+                method="POST",
+                id="form-change-status",
+                data-path=`${prefixAdmin}/products/change-status`
+            )
 
-        form(
-            action="",
-            method="POST",
-            id="form-delete-product",
-            data-path=`${prefixAdmin}/products/delete`
-        )
-        
+            form(
+                action="",
+                method="POST",
+                id="form-delete-product",
+                data-path=`${prefixAdmin}/products/delete`
+            )
+
         script(src="/admin/js/products.js")

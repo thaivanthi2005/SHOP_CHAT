@@ -2,33 +2,29 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 block main
   if(roles.permissions.includes("roles_create"))
-    h1.mb-4 Thêm mới nhóm quyền
-    +alert(success, error)
+    .admin-page
+      h1.page-title Thêm mới nhóm quyền
+      +alert(success, error)
 
-    form(
-      action=`${prefixAdmin}/roles/create`
-      method="POST"
-      enctype="multipart/form-data"
-      id="form-create-roles"
-    )
+      form.admin-form(
+        action=`${prefixAdmin}/roles/create`
+        method="POST"
+        enctype="multipart/form-data"
+        id="form-create-roles"
+      )
+        .form-group
+          label(for="title") Tiêu đề
+          input#title.form-control(
+            type="text"
+            name="title"
+          )
 
-      //- Tiêu đề
-      .form-group
-        label(for="title") Tiêu đề
-        input.form-control(
-          type="text"
-          id="title"
-          name="title"
-        )
+        .form-group
+          label(for="my-expressjs-tinymce-app") Mô tả
+          textarea#my-expressjs-tinymce-app.form-control(
+            name="description"
+            rows="5"
+          )
 
-      //- Mô tả
-      //- Mô tả
-      .form-group
-        label(for="my-expressjs-tinymce-app") Mô tả
-        textarea.form-control(
-          id="my-expressjs-tinymce-app"
-          name="description"
-          rows="5")
-      //- Submit
-      .form-group
-        button.btn.btn-primary(type="submit") Thêm nhóm quyền
+        .form-group
+          button.btn.btn-primary(type="submit") Thêm nhóm quyền

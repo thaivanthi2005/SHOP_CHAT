@@ -1,35 +1,35 @@
 extends ../../layouts/default.pug
 
 block main
-    h1(class="mb-4") Thông tin cá nhân
+  .admin-page
+    h1.page-title Thông tin cá nhân
 
-    if (user.avatar)
-        img(src=user.avatar width="150px" class="mb-3")
-    else
-        img(src="/admin/images/avatar.png" width="150px" class="mb-3")
+    .profile-view
+      if (user.avatar)
+        img.mb-3(src=user.avatar width="150" alt=user.fullName)
+      else
+        img.mb-3(src="/admin/images/avatar.png" width="150" alt="Avatar")
 
-    if (user.fullName)
+      if (user.fullName)
         p Họ tên: 
-            b #{user.fullName}
+          b #{user.fullName}
 
-    if (user.email)
+      if (user.email)
         p Email: 
-            b #{user.email}
+          b #{user.email}
 
-    if (user.phone)
+      if (user.phone)
         p Số điện thoại: 
-            b #{user.phone}
+          b #{user.phone}
 
-    p
-        span Trạng thái:
-        span
-            b #{user.status == "active" ? "Hoạt động" : "Dừng hoạt động"}
+      p
+        span Trạng thái: 
+        b #{user.status == "active" ? "Hoạt động" : "Dừng hoạt động"}
 
-    if (role.title)
+      if (role.title)
         p Phân quyền: 
-            b #{role.title}
+          b #{role.title}
 
-    a(
+      a.btn.btn-primary.mt-2(
         href=`${prefixAdmin}/my-account/edit`
-        class="btn btn-primary"
-    ) Chỉnh sửa thông tin
+      ) Chỉnh sửa thông tin

@@ -3,31 +3,37 @@ include ../../mixins/category-tree.pug
 
 block main
   if(roles.permissions.includes("roles_view"))
-    h1 Nhóm quyền
-    .add-category
-      a(href=`${prefixAdmin}/roles/create`) ➕ Thêm nhóm quyền
-    table(class="table table-hover table-sm"
-                  checkbox-multi)
-      thead.thead-dark
-        tr
-          th.text-center STT
-          th.text-center Tiêu đề
-          th.text-center Mô tả
-          th.text-center Hành động
-      tbody
-        each val,index in products
+    .admin-page
+      h1.page-title Nhóm quyền
+
+      .admin-toolbar
+        .add-category
+          a(href=`${prefixAdmin}/roles/create`) Thêm nhóm quyền
+
+      table.table.table-hover.table-sm(checkbox-multi)
+        thead.thead-dark
           tr
-            td.text-center #{index + 1}
-            td.text-center #{val.title}
-            td.text-center
-              .tinymce-content !{val.description}
-            td.text-center
-              if(roles.permissions.includes("roles_edit"))
-                a(href=`${prefixAdmin}/roles/edit/${val.id}`) ✏️ Sửa
-              if(roles.permissions.includes("roles_delete"))
-                form(
-                  action=`${prefixAdmin}/roles/delete/${val.id}?_method=DELETE`
-                  method="POST"
-                  style="display: inline-block;"
-                )
-                  button(type="submit" onclick="return confirm('Bạn có chắc muốn xóa nhóm quyền này?')") 🗑️ Xóa
+            th.text-center STT
+            th.text-center Tiêu đề
+            th.text-center Mô tả
+            th.text-center Hành động
+        tbody
+          each val,index in products
+            tr
+              td.text-center #{index + 1}
+              td.text-center #{val.title}
+              td.text-center
+                .tinymce-content !{val.description}
+              td.text-center
+                if(roles.permissions.includes("roles_edit"))
+                  a.btn.btn-warning.btn-sm(href=`${prefixAdmin}/roles/edit/${val.id}`) Sửa
+                if(roles.permissions.includes("roles_delete"))
+                  form(
+                    action=`${prefixAdmin}/roles/delete/${val.id}?_method=DELETE`
+                    method="POST"
+                    style="display: inline-block; margin-left: 6px;"
+                  )
+                    button.btn.btn-danger.btn-sm(
+                      type="submit"
+                      onclick="return confirm('Bạn có chắc muốn xóa nhóm quyền này?')"
+                    ) Xóa

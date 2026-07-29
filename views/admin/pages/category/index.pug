@@ -3,24 +3,12 @@ include ../../mixins/category-tree.pug
 
 block main
   if(roles.permissions.includes("products-category_view"))
-    h1 DANH MỤC SẢN PHẨM
+    .admin-page
+      h1.page-title Danh mục sản phẩm
 
-    .categories
-      +categoryTree(products)
+      .admin-toolbar
+        .add-category
+          a(href=`${prefixAdmin}/category/create`) Thêm danh mục
 
-    .add-category
-      a(href=`${prefixAdmin}/category/create`) ➕ Thêm danh mục
-
-
-//- _id
-//- title
-//- parent_id (id của danh mục cha, null nếu là danh mục gốc)
-//- description 
-//- thumbanil 
-//- status 
-//- position 
-//- deleted 
-//- deletedAt 
-//- createAt 
-//- updateAt
-//- slug
+      .categories
+        +categoryTree(products)

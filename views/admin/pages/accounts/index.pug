@@ -1,59 +1,64 @@
 extends ../../layouts/default.pug
 
 block main
-  h1 Danh sách tài khoản
-  a(href=`${prefixAdmin}/accounts/create`) ➕ Thêm Tài Khoản
-  table.table.table-hover.table-sm(checkbox-multi)
-    thead.thead-dark
-      tr
-        th
-          input(type="checkbox", name="checkall")
-        th.text-center STT
-        th.text-center Avatar
-        th.text-center Họ tên
-        th.text-center Email
-        th.text-center SĐT
-        th.text-center Trạng thái
-        th.text-center Hành động
+  .admin-page
+    h1.page-title Danh sách tài khoản
 
-    tbody
-      each val, index in (accounts || [])
+    .admin-toolbar
+      .add-category
+        a(href=`${prefixAdmin}/accounts/create`) Thêm tài khoản
+
+    table.table.table-hover.table-sm(checkbox-multi)
+      thead.thead-dark
         tr
-          td
-            input(
-              type="checkbox",
-              name="id",
-              value=val._id
-            )
+          th
+            input(type="checkbox", name="checkall")
+          th.text-center STT
+          th.text-center Avatar
+          th.text-center Họ tên
+          th.text-center Email
+          th.text-center SĐT
+          th.text-center Trạng thái
+          th.text-center Hành động
 
-          td.text-center #{index + 1}
+      tbody
+        each val, index in (accounts || [])
+          tr
+            td
+              input(
+                type="checkbox",
+                name="id",
+                value=val._id
+              )
 
-          td.text-center
-            if val.avatar
-              img.img-thumbnail(src=val.avatar, width="60")
-            else
-              span.text-muted Không có
+            td.text-center #{index + 1}
 
-          td #{val.fullName}
-          td #{val.email}
-          td.text-center #{val.phone || "-"}
+            td.text-center
+              if val.avatar
+                img.img-thumbnail(src=val.avatar, width="60" alt=val.fullName)
+              else
+                span.text-muted Không có
 
-          td.text-center
-            if val.status == "active"
-              span.badge.badge-success Hoạt động
-            else
-              span.badge.badge-danger Dừng hoạt động
+            td #{val.fullName}
+            td #{val.email}
+            td.text-center #{val.phone || "-"}
 
-          td.text-center
-            a.btn.btn-warning.btn-sm(
-              href=`${prefixAdmin}/accounts/edit/${val._id}`
-            ) Sửa
+            td.text-center
+              if val.status == "active"
+                span.badge.badge-success Hoạt động
+              else
+                span.badge.badge-danger Dừng hoạt động
 
-            a.btn.btn-info.btn-sm.ml-1(
-              href=`${prefixAdmin}/accounts/detail/${val._id}`
-            ) Chi tiết
+            td.text-center
+              a.btn.btn-warning.btn-sm(
+                href=`${prefixAdmin}/accounts/edit/${val._id}`
+              ) Sửa
 
-            button.btn.btn-danger.btn-sm.ml-1(
-              data-id=val._id
-              button-delete
-            ) Xóa
+              a.btn.btn-info.btn-sm.ml-1(
+                href=`${prefixAdmin}/accounts/detail/${val._id}`
+              ) Chi tiết
+
+              button.btn.btn-danger.btn-sm.ml-1(
+                data-id=val._id
+                button-delete
+              ) Xóa

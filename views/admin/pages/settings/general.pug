@@ -2,87 +2,69 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main
-  h1 Cài đặt chung
+  .admin-page
+    h1.page-title Cài đặt chung
 
-  +alert(success, error)
+    +alert(success, error)
 
-  form(
-    action=`${prefixAdmin}/settings/general?_method=PATCH`
-    method="POST"
-    enctype="multipart/form-data"
-  )
-    div(class="form-group")
-      label(for="websiteName") Tên website
-      input(
-        type="text"
-        class="form-control"
-        id="websiteName"
-        name="websiteName"
-        value=(settings.websiteName ? settings.websiteName : '')
-      )
-
-    div(
-      class="form-group"
-      upload-image
+    form.admin-form(
+      action=`${prefixAdmin}/settings/general?_method=PATCH`
+      method="POST"
+      enctype="multipart/form-data"
     )
-      label(for="logo") Logo
-      input(
-        type="file"
-        class="form-control-file"
-        id="logo"
-        name="logo"
-        accept="image/*"
-        upload-image-input
-      )
-      img(
-        src=(settings.logo ? settings.logo : '')
-        alt="Logo"
-        class="img-thumbnail mt-2"
-        upload-image-preview
-      )
+      .form-group
+        label(for="websiteName") Tên website
+        input#websiteName.form-control(
+          type="text"
+          name="websiteName"
+          value=(settings.websiteName ? settings.websiteName : '')
+        )
 
-    div(class="form-group")
-      label(for="phone") Số điện thoại
-      input(
-        type="text"
-        class="form-control"
-        id="phone"
-        name="phone"
-        value=(settings.phone ? settings.phone : '')
-      )
+      .form-group(upload-image)
+        label(for="logo") Logo
+        input#logo.form-control-file(
+          type="file"
+          name="logo"
+          accept="image/*"
+          upload-image-input
+        )
+        img.img-thumbnail.mt-2(
+          src=(settings.logo ? settings.logo : '')
+          alt="Logo"
+          upload-image-preview
+        )
 
-    div(class="form-group")
-      label(for="email") Email
-      input(
-        type="text"
-        class="form-control"
-        id="email"
-        name="email"
-        value=(settings.email ? settings.email : '')
-      )
+      .form-group
+        label(for="phone") Số điện thoại
+        input#phone.form-control(
+          type="text"
+          name="phone"
+          value=(settings.phone ? settings.phone : '')
+        )
 
-    div(class="form-group")
-      label(for="address") Địa chỉ
-      input(
-        type="text"
-        class="form-control"
-        id="address"
-        name="address"
-        value=(settings.address ? settings.address : '')
-      )
+      .form-group
+        label(for="email") Email
+        input#email.form-control(
+          type="text"
+          name="email"
+          value=(settings.email ? settings.email : '')
+        )
 
-    div(class="form-group")
-      label(for="copyright") Copyright
-      input(
-        type="text"
-        class="form-control"
-        id="copyright"
-        name="copyright"
-        value=(settings.copyright ? settings.copyright : '')
-      )
+      .form-group
+        label(for="address") Địa chỉ
+        input#address.form-control(
+          type="text"
+          name="address"
+          value=(settings.address ? settings.address : '')
+        )
 
-    div(class="form-group")
-      button(
-        type="submit"
-        class="btn btn-primary"
-      ) Cập nhật
+      .form-group
+        label(for="copyright") Copyright
+        input#copyright.form-control(
+          type="text"
+          name="copyright"
+          value=(settings.copyright ? settings.copyright : '')
+        )
+
+      .form-group
+        button.btn.btn-primary(type="submit") Cập nhật

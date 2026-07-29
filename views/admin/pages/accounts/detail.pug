@@ -2,32 +2,31 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main
-  .account
+  .admin-page
+    h1.page-title Chi tiết tài khoản
 
-    .account-image 
-      if account.avatar && account.avatar !== ""
-        img(
-          src=account.avatar,
-          alt=account.fullName,
-          style="width:150px; height:150px; object-fit:cover; border-radius:50%;"
-        )
-      else
-        img(
-          src="https://via.placeholder.com/150?text=Avatar",
-          alt="No Avatar",
-          style="border-radius:50%;"
-        )
+    .account-card
+      .text-center.mb-3
+        if account.avatar && account.avatar !== ""
+          img(
+            src=account.avatar,
+            alt=account.fullName,
+            style="width:150px; height:150px; object-fit:cover; border-radius:18px;"
+          )
+        else
+          img(
+            src="https://via.placeholder.com/150?text=Avatar",
+            alt="No Avatar",
+            style="border-radius:18px;"
+          )
 
-      br
+        .mt-2
+          if account.status == "active"
+            span.badge.badge-success Hoạt động
+          else
+            span.badge.badge-danger Dừng hoạt động
 
-      if account.status == "active"
-        span.badge.badge-success Hoạt động
-      else
-        span.badge.badge-danger Dừng hoạt động
-
-    // Thông tin
-    .account-info.mt-3
-      h2= account.fullName
+      h2.mb-3= account.fullName
 
       p
         strong Email:
@@ -51,7 +50,6 @@ block main
           strong Cập nhật:
           |  #{new Date(account.updatedAt).toLocaleString()}
 
-      // Nút
       .mt-3
         a.btn.btn-warning(
           href=`${prefixAdmin}/accounts/edit/${account._id}`

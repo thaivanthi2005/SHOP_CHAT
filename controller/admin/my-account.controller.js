@@ -21,7 +21,7 @@ module.exports.edit = async (req, res) => {
 
 module.exports.edit_path = async (req, res) => {
   let find = {
-    _id: res.locals.user._id,
+    _id: res.locals.user.id,
   };
   req.body.password = md5(req.body.password);
   await accounts.findOne(find).updateOne(req.body);

@@ -5,53 +5,40 @@ include ../../mixins/alert.pug
 block main
   +alert(success, error)
 
-  .container.my-5
-    .row.justify-content-center
-      .col-md-6.col-lg-5
-        .card.shadow
-          .card-body
-            h3.text-center.mb-4 Đăng nhập
+  .card.shadow
+    .card-body
+      h3.text-center.mb-4 Đăng nhập
 
-            form(
-              action=`${prefixAdmin}/auth/login`
-              method="POST"
-            )
+      form(
+        action=`${prefixAdmin}/auth/login`
+        method="POST"
+      )
+        .form-group.mb-3
+          label(for="email") Email
+          input#email.form-control(
+            type="email"
+            name="email"
+            placeholder="Nhập email"
+            required
+          )
 
-              // Email
-              .form-group.mb-3
-                label(for="email") Email
-                input.form-control(
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Nhập email"
-                  required
-                )
+        .form-group.mb-3
+          label(for="password") Mật khẩu
+          input#password.form-control(
+            type="password"
+            name="password"
+            placeholder="Nhập mật khẩu"
+            required
+          )
 
-              // Password
-              .form-group.mb-3
-                label(for="password") Mật khẩu
-                input.form-control(
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Nhập mật khẩu"
-                  required
-                )
+        .form-check.mb-3
+          input#remember.form-check-input(
+            type="checkbox"
+            name="remember"
+          )
+          label.form-check-label(for="remember") Nhớ đăng nhập
 
-              // Remember me
-              .form-check.mb-3
-                input.form-check-input(
-                  type="checkbox"
-                  id="remember"
-                  name="remember"
-                )
-                label.form-check-label(for="remember") Nhớ đăng nhập
+        button.btn.btn-primary.w-100(type="submit") Đăng nhập
 
-              // Submit button
-              button.btn.btn-primary.w-100(type="submit")
-                | Đăng nhập
-
-              // Forgot password
-              .text-center.mt-3
-                a(href=`${prefixAdmin}/auth/forgot-password`) Quên mật khẩu?
+        .text-center.mt-3
+          a(href=`${prefixAdmin}/auth/forgot-password`) Quên mật khẩu?

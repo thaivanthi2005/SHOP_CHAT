@@ -1,4 +1,4 @@
-/* ===== AUTH PAGES ===== */
+/* ===== AUTH PAGES — Vivo Blue × ZEISS ===== */
 .auth-page {
   padding: 48px 0 64px;
 }
@@ -19,8 +19,8 @@
   content: "";
   position: absolute;
   inset: 0 0 auto 0;
-  height: 4px;
-  background: linear-gradient(90deg, #ea580c, #fb923c);
+  height: 3px;
+  background: linear-gradient(90deg, #415fff, #93a8ff);
 }
 
 .auth-card h1,
@@ -49,7 +49,7 @@ h1.text-center {
   display: block;
   font-size: 13px;
   font-weight: 600;
-  color: #44403c;
+  color: #334155;
   margin-bottom: 7px;
 }
 
@@ -67,29 +67,29 @@ h1.text-center {
 }
 
 .form-control::placeholder {
-  color: #a8a29e;
+  color: #94a3b8;
 }
 
 .form-control:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(65, 95, 255, 0.16);
   background: #fff;
 }
 
 .btn.btn-primary.btn-block,
 .auth-card .btn-primary {
   width: 100%;
-  background: linear-gradient(135deg, #ea580c, #c2410c);
+  background: linear-gradient(135deg, #5b7cff, #415fff);
   color: #fff;
   border: none;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   padding: 13px;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
   margin-top: 8px;
   transition: all 0.2s ease;
-  box-shadow: 0 10px 24px rgba(194, 65, 12, 0.3);
+  box-shadow: 0 10px 24px rgba(65, 95, 255, 0.3);
   font-family: var(--font-display);
   letter-spacing: 0.02em;
 }
@@ -98,7 +98,7 @@ h1.text-center {
 .auth-card .btn-primary:hover {
   transform: translateY(-2px);
   filter: brightness(1.05);
-  box-shadow: 0 14px 28px rgba(194, 65, 12, 0.38);
+  box-shadow: 0 14px 28px rgba(65, 95, 255, 0.38);
 }
 
 .btn.btn-primary.btn-block:active {
@@ -132,5 +132,5 @@ h1.text-center {
 .profile-card img[upload-image-preview],
 .profile-card .rounded-circle {
   border: 3px solid #fff;
-  box-shadow: 0 10px 24px rgba(28, 25, 23, 0.12);
+  box-shadow: 0 10px 24px rgba(11, 18, 32, 0.12);
 }

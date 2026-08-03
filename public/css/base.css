@@ -1,32 +1,34 @@
-/* ===== DESIGN TOKENS & BASE ===== */
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap");
+/* ===== DESIGN TOKENS — Vivo Blue × ZEISS ===== */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap");
 
 :root {
-  --color-bg: #f6f3ee;
+  --color-bg: #f5f7fc;
   --color-surface: #ffffff;
-  --color-ink: #1c1917;
-  --color-muted: #78716c;
-  --color-border: #e7e5e4;
-  --color-primary: #c2410c;
-  --color-primary-strong: #9a3412;
-  --color-primary-soft: #fff7ed;
-  --color-accent: #ea580c;
+  --color-ink: #0b1220;
+  --color-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-primary: #415fff;
+  --color-primary-strong: #2b4bff;
+  --color-primary-soft: #eef2ff;
+  --color-accent: #5b7cff;
   --color-success: #15803d;
   --color-success-soft: #dcfce7;
   --color-danger: #dc2626;
   --color-danger-soft: #fee2e2;
   --color-info: #0369a1;
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-pill: 999px;
-  --shadow-sm: 0 4px 14px rgba(28, 25, 23, 0.06);
-  --shadow-md: 0 12px 32px rgba(28, 25, 23, 0.1);
-  --shadow-lg: 0 20px 48px rgba(28, 25, 23, 0.14);
-  --font-body: "Work Sans", "Segoe UI", sans-serif;
-  --font-display: "Outfit", "Segoe UI", sans-serif;
+  --color-navy: #06101f;
+  --color-navy-mid: #0c1a33;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-pill: 6px;
+  --shadow-sm: 0 2px 10px rgba(11, 18, 32, 0.05);
+  --shadow-md: 0 10px 28px rgba(11, 18, 32, 0.09);
+  --shadow-lg: 0 18px 44px rgba(11, 18, 32, 0.12);
+  --font-body: "DM Sans", "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
   --container: 1240px;
-  --space-section: 48px;
+  --space-section: 56px;
   --transition: 200ms ease;
 }
 
@@ -42,8 +44,8 @@ body {
 body {
   font-family: var(--font-body);
   background:
-    radial-gradient(1000px 380px at 0% -5%, rgba(234, 88, 12, 0.1), transparent 55%),
-    radial-gradient(800px 320px at 100% 0%, rgba(120, 113, 108, 0.1), transparent 50%),
+    radial-gradient(900px 360px at 0% -8%, rgba(65, 95, 255, 0.1), transparent 55%),
+    radial-gradient(720px 300px at 100% 0%, rgba(91, 124, 255, 0.08), transparent 50%),
     var(--color-bg);
   color: var(--color-ink);
   margin: 0;
@@ -114,16 +116,16 @@ h4,
 .box-head .inner-title::after {
   content: "";
   display: block;
-  width: 44px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-accent), #fb923c);
-  border-radius: 99px;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  border-radius: 1px;
   margin-top: 10px;
 }
 
 /* ===== BUTTONS ===== */
 .btn {
-  border-radius: var(--radius-pill) !important;
+  border-radius: var(--radius-sm) !important;
   font-family: var(--font-display);
   font-weight: 600;
   transition:
@@ -138,15 +140,20 @@ h4,
   transform: translateY(-1px);
 }
 
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 .btn-primary {
-  background: linear-gradient(135deg, #ea580c, #c2410c) !important;
+  background: linear-gradient(135deg, #5b7cff, #415fff) !important;
   border-color: transparent !important;
-  box-shadow: 0 8px 20px rgba(194, 65, 12, 0.28);
+  box-shadow: 0 8px 20px rgba(65, 95, 255, 0.28);
 }
 
 .btn-primary:hover {
   filter: brightness(1.05);
-  background: linear-gradient(135deg, #c2410c, #9a3412) !important;
+  background: linear-gradient(135deg, #415fff, #2b4bff) !important;
 }
 
 .btn-success {
@@ -163,7 +170,7 @@ h4,
 .btn-secondary,
 .btn-info,
 .btn-outline-secondary {
-  border-radius: var(--radius-pill) !important;
+  border-radius: var(--radius-sm) !important;
 }
 
 .btn-info {
@@ -189,8 +196,8 @@ h4,
 .form-control:focus,
 .form-select:focus,
 .quantity-input:focus {
-  border-color: var(--color-accent) !important;
-  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15) !important;
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(65, 95, 255, 0.18) !important;
   outline: none !important;
 }
 
@@ -198,7 +205,7 @@ h4,
 .form-label {
   font-size: 13px;
   font-weight: 600;
-  color: #44403c;
+  color: #334155;
   margin-bottom: 7px;
 }
 
@@ -212,8 +219,8 @@ h4,
 }
 
 .table thead th {
-  background: #fafaf9;
-  color: #44403c;
+  background: #f8fafc;
+  color: #334155;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -229,7 +236,7 @@ h4,
 }
 
 .table img {
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   object-fit: cover;
 }
 
@@ -254,12 +261,12 @@ h4,
 /* ===== FOOTER ===== */
 .footer {
   background:
-    linear-gradient(120deg, rgba(234, 88, 12, 0.18), transparent 42%),
-    #1c1917;
+    linear-gradient(120deg, rgba(65, 95, 255, 0.22), transparent 48%),
+    var(--color-navy);
   color: #fff;
   width: 100%;
   margin-top: auto;
-  padding: 32px 24px;
+  padding: 36px 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -286,14 +293,33 @@ h4,
 .footer-brand__tag {
   margin: 0;
   font-size: 13px;
-  color: #a8a29e;
+  color: #94a3b8;
 }
 
 .footer-copy,
 .footer p {
   margin: 0;
-  color: #a8a29e;
+  color: #94a3b8;
   font-size: 13px;
+}
+
+.footer-zeiss {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a5b4fc;
+}
+
+.footer-zeiss::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: #a5b4fc;
 }
 
 /* ===== EMPTY STATE ===== */

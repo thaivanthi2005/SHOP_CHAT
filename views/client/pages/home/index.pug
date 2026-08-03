@@ -16,9 +16,10 @@ block main
     .home-hero__media(aria-hidden="true")
     .home-hero__inner
       .home-hero__copy
+        span.home-hero__zeiss Co-engineered with ZEISS
         span.home-hero__brand #{settings.websiteName}
-        p.home-hero__text Khám phá sản phẩm nổi bật và mới nhất với trải nghiệm mua sắm hiện đại, nhanh chóng.
-        a.home-hero__cta(href="/products") Xem sản phẩm
+        p.home-hero__text Camera ZEISS chuẩn studio — màu xanh vivo, hình ảnh sắc nét trong từng khung hình.
+        a.home-hero__cta(href="/products") Khám phá sản phẩm
 
       if heroProducts.length
         .home-hero__stage(data-hero-carousel)
@@ -50,6 +51,27 @@ block main
                 )
             button.hero-carousel__btn(type="button" data-hero-next aria-label="Sản phẩm tiếp theo")
               i.fas.fa-chevron-right(aria-hidden="true")
+
+  section.home-trust
+    .home-trust__inner
+      .home-trust__item
+        span.home-trust__icon(aria-hidden="true")
+          i.fas.fa-camera
+        div
+          span.home-trust__label ZEISS Optics
+          p.home-trust__desc Ống kính đồng thiết kế, chi tiết sắc nét.
+      .home-trust__item
+        span.home-trust__icon(aria-hidden="true")
+          i.fas.fa-mobile-alt
+        div
+          span.home-trust__label Vivo Blue Design
+          p.home-trust__desc Ngôn ngữ xanh hiện đại, tối giản chuẩn tech.
+      .home-trust__item
+        span.home-trust__icon(aria-hidden="true")
+          i.fas.fa-shield-alt
+        div
+          span.home-trust__label Chính hãng
+          p.home-trust__desc Bảo hành rõ ràng, trải nghiệm mua sắm tin cậy.
 
   .container
     section.home-section

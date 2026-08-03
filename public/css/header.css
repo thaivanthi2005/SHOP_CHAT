@@ -1,23 +1,23 @@
-/* ===== HEADER ===== */
+/* ===== HEADER — Vivo Blue × ZEISS ===== */
 :root {
   --header-bg: rgba(255, 255, 255, 0.92);
-  --header-ink: #1c1917;
-  --header-muted: #78716c;
-  --header-border: #e7e5e4;
-  --header-accent: #c2410c;
-  --header-accent-soft: #fff7ed;
-  --header-radius: 12px;
-  --header-font: "Work Sans", "Segoe UI", sans-serif;
-  --header-display: "Outfit", "Segoe UI", sans-serif;
+  --header-ink: #0b1220;
+  --header-muted: #64748b;
+  --header-border: #e2e8f0;
+  --header-accent: #415fff;
+  --header-accent-soft: #eef2ff;
+  --header-radius: 0;
+  --header-font: "DM Sans", "Segoe UI", sans-serif;
+  --header-display: "Space Grotesk", "Segoe UI", sans-serif;
 }
 
 .header {
   background:
-    linear-gradient(180deg, rgba(255, 247, 237, 0.65), rgba(255, 255, 255, 0.88)),
+    linear-gradient(180deg, rgba(238, 242, 255, 0.7), rgba(255, 255, 255, 0.9)),
     var(--header-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--header-border);
-  box-shadow: 0 8px 28px rgba(28, 25, 23, 0.06);
+  box-shadow: 0 6px 22px rgba(11, 18, 32, 0.05);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -40,10 +40,11 @@
 .header-logo a {
   display: inline-flex;
   align-items: center;
+  gap: 10px;
 }
 
 .header-logo img {
-  max-height: 48px;
+  max-height: 44px;
   width: auto;
   display: block;
   transition: transform 0.2s ease;
@@ -63,11 +64,10 @@
   display: flex;
   align-items: center;
   width: 100%;
-  border-radius: 999px;
+  border-radius: 0;
   overflow: hidden;
-  border: 1.5px solid var(--header-border);
+  border: 1px solid var(--header-border);
   background: #fff;
-  box-shadow: 0 2px 10px rgba(28, 25, 23, 0.04);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -75,14 +75,14 @@
 
 .header-search .search-wrap:focus-within {
   border-color: var(--header-accent);
-  box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.15);
+  box-shadow: 0 0 0 3px rgba(65, 95, 255, 0.16);
 }
 
 .header-search .search-input {
   flex: 1;
   min-width: 0;
   height: 42px;
-  padding: 0 16px;
+  padding: 0 14px;
   font-size: 14px;
   border: none;
   outline: none;
@@ -92,14 +92,14 @@
 }
 
 .header-search .search-input::placeholder {
-  color: #a8a29e;
+  color: #94a3b8;
 }
 
 .header-search .search-btn {
   flex-shrink: 0;
   height: 42px;
-  padding: 0 20px;
-  background: linear-gradient(135deg, #ea580c, #c2410c);
+  padding: 0 18px;
+  background: linear-gradient(135deg, #5b7cff, #415fff);
   color: #fff;
   border: none;
   font-size: 13px;
@@ -112,7 +112,7 @@
 }
 
 .header-search .search-btn:hover {
-  filter: brightness(1.05);
+  filter: brightness(1.06);
 }
 
 .header-nav {
@@ -137,8 +137,8 @@
   font-weight: 600;
   letter-spacing: 0.03em;
   color: var(--header-ink);
-  padding: 9px 12px;
-  border-radius: 999px;
+  padding: 8px 10px;
+  border-radius: 0;
   white-space: nowrap;
   transition:
     color 0.2s ease,
@@ -149,66 +149,87 @@
 
 .header-nav .inner-menu > ul > li > a:hover {
   color: var(--header-accent);
-  background: var(--header-accent-soft);
+  background: transparent;
 }
 
-.header-link-login {
-  border: 1.5px solid var(--header-border) !important;
-}
-
-.header-link-register {
-  background: linear-gradient(135deg, #ea580c, #c2410c) !important;
-  color: #fff !important;
-  box-shadow: 0 6px 16px rgba(194, 65, 12, 0.25);
-}
-
-.header-link-register:hover {
-  color: #fff !important;
-  filter: brightness(1.05);
-}
-
-.header-link-user {
-  color: var(--header-accent) !important;
-  background: var(--header-accent-soft);
-}
-
-.cart-link {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--header-ink);
-  padding: 8px 14px;
-  border: 1.5px solid var(--header-border);
-  border-radius: 999px;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-  background: #fff;
-}
-
-.cart-link:hover {
+/* Đăng nhập — outline */
+.header-nav .inner-menu > ul > li > a.header-link-login {
+  height: 34px;
+  padding: 0 14px;
+  border: 1px solid var(--header-accent);
   color: var(--header-accent);
-  border-color: #fdba74;
+  background: transparent;
+}
+
+.header-nav .inner-menu > ul > li > a.header-link-login:hover {
   background: var(--header-accent-soft);
+  color: var(--header-accent);
 }
 
-.cart-link .fa-shopping-cart {
-  font-size: 14px;
-}
-
-.cart-badge {
-  background: linear-gradient(135deg, #ea580c, #c2410c);
+/* Đăng ký — nút đặc xanh */
+.header-nav .inner-menu > ul > li > a.header-link-register {
+  height: 34px;
+  padding: 0 14px;
+  border: 1px solid #415fff;
+  background: #415fff;
   color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
+}
+
+.header-nav .inner-menu > ul > li > a.header-link-register:hover {
+  background: #2b4bff;
+  border-color: #2b4bff;
+  color: #fff;
+}
+
+.header-nav .inner-menu > ul > li > a.header-link-user {
+  color: var(--header-accent);
+  background: var(--header-accent-soft);
+  padding: 6px 10px;
+}
+
+/* Giỏ hàng — chỉ icon + badge */
+.header-nav .inner-menu > ul > li > a.cart-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  position: relative;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--header-ink);
+  transition: color 0.2s ease;
+}
+
+.header-nav .inner-menu > ul > li > a.cart-link:hover {
+  color: var(--header-accent);
+  background: transparent;
+  border: none;
+}
+
+.header-nav .cart-link .fa-shopping-cart {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.header-nav .cart-badge {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  background: #415fff;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  font-family: var(--header-display);
+  border-radius: 0;
+  min-width: 14px;
+  height: 14px;
+  padding: 0 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
 }
 
@@ -225,11 +246,11 @@ li.sub-menu .sub-menu-list {
   background-color: #fff;
   min-width: 220px;
   list-style: none;
-  padding: 8px 0;
+  padding: 6px 0;
   margin: 0;
   border: 1px solid var(--header-border);
-  border-radius: var(--header-radius);
-  box-shadow: 0 16px 40px rgba(28, 25, 23, 0.12);
+  border-radius: 0;
+  box-shadow: 0 14px 36px rgba(11, 18, 32, 0.12);
   z-index: 999;
 }
 
@@ -245,7 +266,7 @@ li.sub-menu.active > ul.sub-menu-list {
 
 .sub-menu-list li a {
   display: block;
-  padding: 10px 18px;
+  padding: 10px 16px;
   color: var(--header-ink);
   font-size: 14px;
   white-space: nowrap;
@@ -267,8 +288,8 @@ li.sub-menu.active > ul.sub-menu-list {
   background-color: #fff;
   min-width: 200px;
   border: 1px solid var(--header-border);
-  border-radius: var(--header-radius);
-  box-shadow: 0 16px 40px rgba(28, 25, 23, 0.12);
+  border-radius: 0;
+  box-shadow: 0 14px 36px rgba(11, 18, 32, 0.12);
   z-index: 1000;
 }
 
@@ -280,7 +301,7 @@ li.sub-menu.active > ul.sub-menu-list {
   content: "›";
   float: right;
   margin-left: 8px;
-  color: #a8a29e;
+  color: #94a3b8;
 }
 
 @keyframes headerDropdownIn {

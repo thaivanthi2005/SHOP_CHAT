@@ -25,12 +25,12 @@ header.header
                         - const pathProduct = "/products"
                         a(href=pathProduct) SẢN PHẨM
                             +subMenu(layoutcategory)
-                    li
-                        a.cart-link(href="/cart")
-                            i.fas.fa-shopping-cart(aria-hidden="true")
-                            span GIỎ HÀNG
-                            span.cart-badge #{total_quantity}
                     if(user)
+                        li
+                            a.cart-link(href="/cart" aria-label=`Giỏ hàng (${total_quantity})`)
+                                i.fas.fa-shopping-cart(aria-hidden="true")
+                                if total_quantity > 0
+                                    span.cart-badge #{total_quantity}
                         li
                             a.header-link-user(href='/user/info') #{user.fullName}
                         li

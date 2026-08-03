@@ -177,7 +177,6 @@ module.exports.edit_products_patch = async (req, res) => {
   const updateData = {
     title: req.body.title,
     description: req.body.description,
-    product_category_id: req.body.product_category_id,
     price: req.body.price,
     featured: req.body.featured,
     discountPercentage: req.body.discountPercentage,
@@ -185,6 +184,9 @@ module.exports.edit_products_patch = async (req, res) => {
     position: req.body.position,
     status: req.body.status,
   };
+  if (req.body.product_category_id) {
+    updateData.product_category_id = req.body.product_category_id;
+  }
   if (req.file) {
     updateData.thumbnail = req.body.thumbnail;
   }
@@ -193,6 +195,7 @@ module.exports.edit_products_patch = async (req, res) => {
       account_id: res.locals.user.role_id,
       updatedAt: new Date(),
     };
+    console.log(updateData);
     await Product.updateOne(
       { _id: id },
       {
@@ -202,7 +205,8 @@ module.exports.edit_products_patch = async (req, res) => {
     );
     res.redirect(`${system_config.prefixAdmin}/products`);
   } catch (error) {
-    res.redirect(`${system_config.prefixAdmin}/dashboard`);
+    console.error(error);
+    res.redirect(`${system_config.prefixAdmin}/products`);
   }
 };
 

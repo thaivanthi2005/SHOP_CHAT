@@ -10,98 +10,99 @@ block main
         .admin-page
             +alert(success, error)
             h1.page-title Danh sách sản phẩm
+
             .card.mb-3
                 .card-header Bộ lọc và Tìm kiếm
                 .card-body
                     .row
-                        .col-4
+                        .col-md-4.mb-2
                             +form-sort()
-                        .col-4
+                        .col-md-4.mb-2
                             +filterStatus(category)
-                        .col-4
+                        .col-md-4.mb-2
                             +search(keyword)
 
             .card.mb-3
+                .card-header Danh sách
                 .card-body
-                    .card.mb-3
-                        .card-header Danh sách
-                        .card-body
-                            .row
-                                .col-8
-                                    +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
-                                .col-4
-                                    a(href=`${prefixAdmin}/products/create` class="btn btn-outline-success") Thêm sản phẩm
-
-                    table(class="table table-hover table-sm"
-                    checkbox-multi)
-                        thead.thead-dark
-                            tr
-                                th
-                                    input(type="checkbox", name="checkall")
-                                th.text-center STT
-                                th.text-center Hình ảnh
-                                th.text-center Tiêu đề
-                                th.text-center Giá
-                                th.text-center Vị trí
-                                th.text-center Trạng thái
-                                th.text-center Người tạo
-                                th.text-center Hành động
-
-                        tbody
-                            each val,index in products
+                    .admin-toolbar.mb-3
+                        .admin-toolbar__actions
+                            +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+                            a.btn.btn-outline-success(href=`${prefixAdmin}/products/create`) Thêm sản phẩm
+                    .table-responsive
+                        table.table.table-hover.table-sm.mb-0(checkbox-multi)
+                            thead.thead-dark
                                 tr
-                                    td
-                                        input(
-                                            type="checkbox",
-                                            name="id",
-                                            value=val.id
-                                        )
-                                    td.text-center #{index + 1}
-                                    td.text-center
-                                        img.img-thumbnail(
-                                            width="80",
-                                            src=val.thumbnail
-                                            alt=val.title
-                                        )
-                                    td #{val.title}
-                                    td.text-center #{val.price}
-                                    td
-                                        input(
-                                            type="number"
-                                            value=val.position
-                                            style="width: 60px;"
-                                            name="position"
-                                        )
-                                    td
-                                        if(val.status == "InStock")
-                                            a(href="javascript:;"
-                                            data-status="InStock"
-                                            data-id=val.id
-                                            button-change-status
-                                            class="badge badge-success") Còn hàng
-                                        else
-                                            a(href="javascript:;"
-                                            data-status="OutStock"
-                                            data-id=val.id
-                                            button-change-status
-                                            class="badge badge-danger") Hết hàng
-                                    td.text-center
-                                        if val.createdBy.account_id && val.createdBy.createdAt
-                                            |#{accounts.fullName} - #{moment(parseInt(val.createdBy.createdAt)).format('DD/MM/YYYY')}
-                                        else
-                                            |Chưa có dữ liệu
-                                    td.text-center
-                                        a(class="btn btn-warning btn-sm"
-                                        href=`${prefixAdmin}/products/edit/${val.id}`
-                                        ) Sửa
-                                        a(
-                                            class="btn btn-info btn-sm ml-1"
-                                            href=`${prefixAdmin}/products/detail/${val.id}`
-                                        ) Chi tiết
-                                        if(roles.permissions.includes("products_delete"))
-                                            button(class="btn btn-danger btn-sm ml-1",
-                                            data-id=val.id,
-                                            button-delete) Xóa
+                                    th
+                                        input(type="checkbox", name="checkall")
+                                    th.text-center STT
+                                    th.text-center Hình ảnh
+                                    th.text-center Tiêu đề
+                                    th.text-center Giá
+                                    th.text-center Vị trí
+                                    th.text-center Trạng thái
+                                    th.text-center Người tạo
+                                    th.text-center Hành động
+
+                            tbody
+                                each val,index in products
+                                    tr
+                                        td
+                                            input(
+                                                type="checkbox",
+                                                name="id",
+                                                value=val.id
+                                            )
+                                        td.text-center #{index + 1}
+                                        td.text-center
+                                            img.img-thumbnail(
+                                                width="80",
+                                                src=val.thumbnail
+                                                alt=val.title
+                                            )
+                                        td #{val.title}
+                                        td.text-center #{val.price}
+                                        td.text-center
+                                            input.form-control.form-control-sm.position-input(
+                                                type="number"
+                                                value=val.position
+                                                name="position"
+                                            )
+                                        td.text-center
+                                            if(val.status == "InStock")
+                                                a(
+                                                    href="javascript:;"
+                                                    data-status="InStock"
+                                                    data-id=val.id
+                                                    button-change-status
+                                                    class="badge badge-success"
+                                                ) Còn hàng
+                                            else
+                                                a(
+                                                    href="javascript:;"
+                                                    data-status="OutStock"
+                                                    data-id=val.id
+                                                    button-change-status
+                                                    class="badge badge-danger"
+                                                ) Hết hàng
+                                        td.text-center
+                                            if val.createdBy && val.createdBy.account_id && val.createdBy.createdAt
+                                                |#{accounts && accounts.fullName ? accounts.fullName : "Admin"} - #{moment(parseInt(val.createdBy.createdAt)).format('DD/MM/YYYY')}
+                                            else
+                                                |Chưa có dữ liệu
+                                        td.text-center.text-nowrap
+                                            a.btn.btn-warning.btn-sm(
+                                                href=`${prefixAdmin}/products/edit/${val.id}`
+                                            ) Sửa
+                                            a.btn.btn-info.btn-sm.ml-1(
+                                                href=`${prefixAdmin}/products/detail/${val.id}`
+                                            ) Chi tiết
+                                            if(roles.permissions.includes("products_delete"))
+                                                button.btn.btn-danger.btn-sm.ml-1(
+                                                    data-id=val.id,
+                                                    button-delete
+                                                ) Xóa
+
             +pagination(pagination)
 
             form(

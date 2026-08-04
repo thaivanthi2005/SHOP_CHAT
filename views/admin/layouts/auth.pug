@@ -16,15 +16,15 @@ html(lang="vi")
     )
     link(
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
     )
     style.
       body {
-        font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+        font-family: "DM Sans", "Segoe UI", sans-serif;
         background:
-          radial-gradient(900px 360px at 10% 0%, rgba(20, 184, 166, 0.22), transparent 55%),
-          radial-gradient(700px 320px at 100% 100%, rgba(15, 23, 42, 0.18), transparent 50%),
-          linear-gradient(160deg, #0b1220, #111827 55%, #134e4a);
+          radial-gradient(900px 360px at 10% 0%, rgba(65, 95, 255, 0.28), transparent 55%),
+          radial-gradient(700px 320px at 100% 100%, rgba(91, 124, 255, 0.16), transparent 50%),
+          linear-gradient(160deg, #06101f, #0b1220 55%, #0c1a33);
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -42,21 +42,24 @@ html(lang="vi")
         color: #fff;
       }
       .auth-brand__mark {
-        width: 48px;
-        height: 48px;
-        border-radius: 14px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        font-weight: 800;
-        background: linear-gradient(145deg, #14b8a6, #0f766e);
-        box-shadow: 0 10px 24px rgba(20, 184, 166, 0.35);
+        height: 32px;
+        padding: 0 14px;
+        font-family: "Space Grotesk", "Segoe UI", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        background: linear-gradient(135deg, #5b7cff, #415fff);
+        box-shadow: 0 10px 24px rgba(65, 95, 255, 0.35);
         margin-bottom: 12px;
       }
       .auth-brand h2 {
         margin: 0;
+        font-family: "Space Grotesk", "Segoe UI", sans-serif;
         font-size: 28px;
-        font-weight: 800;
+        font-weight: 700;
         letter-spacing: -0.03em;
       }
       .auth-brand p {
@@ -66,7 +69,7 @@ html(lang="vi")
       }
       .card {
         border: none;
-        border-radius: 18px;
+        border-radius: 8px;
         box-shadow: 0 20px 48px rgba(2, 6, 23, 0.35);
         overflow: hidden;
       }
@@ -74,27 +77,29 @@ html(lang="vi")
         padding: 28px !important;
       }
       .form-control {
-        border-radius: 10px;
+        border-radius: 6px;
         border: 1.5px solid #e2e8f0;
         padding: 11px 14px;
       }
       .form-control:focus {
-        border-color: #0f766e;
-        box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+        border-color: #415fff;
+        box-shadow: 0 0 0 3px rgba(65, 95, 255, 0.18);
       }
       .btn-primary {
         border: none;
-        border-radius: 999px;
-        background: linear-gradient(135deg, #14b8a6, #0f766e);
+        border-radius: 6px;
+        background: linear-gradient(135deg, #5b7cff, #415fff);
         font-weight: 700;
+        font-family: "Space Grotesk", "Segoe UI", sans-serif;
         padding: 11px;
-        box-shadow: 0 10px 22px rgba(15, 118, 110, 0.3);
+        box-shadow: 0 10px 22px rgba(65, 95, 255, 0.3);
+        cursor: pointer;
       }
       .btn-primary:hover {
         filter: brightness(1.05);
       }
       a {
-        color: #0f766e;
+        color: #415fff;
         font-weight: 600;
         text-decoration: none;
       }
@@ -108,11 +113,11 @@ html(lang="vi")
   body
     .auth-box
       .auth-brand
-        .auth-brand__mark A
+        .auth-brand__mark ADMIN
         h2 Admin Panel
         p Đăng nhập để quản trị hệ thống
       block main
-      .auth-footer © 2026 Begin Admin
+      .auth-footer © 2026 Vivo × ZEISS Admin
 
     script(
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

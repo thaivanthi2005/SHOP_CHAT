@@ -1,37 +1,46 @@
 doctype html
-html
-    head
-        title #{pagetitle}
+html(lang="vi")
+  head
+    title #{pagetitle}
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    )
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin="")
+    link(
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap"
+    )
+    link(
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    )
+    link(rel="stylesheet", href="/admin/css/style.css")
+    link(rel="stylesheet", href="/admin/css/category.css")
 
-        link(
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        )
-        link(rel="preconnect", href="https://fonts.googleapis.com")
-        link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin="")
-        link(rel="stylesheet", href="/admin/css/style.css")
-        link(rel="stylesheet", href="/admin/css/category.css")
+  body
+    include ../partials/header.pug
 
-    body
-        include ../partials/header.pug
+    .body
+      include ../partials/sider.pug
 
-        .body
-            include ../partials/sider.pug
+      .main
+        block main
 
-            .main
-                block main
-
-        script(
-            src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        )
-        script(
-            src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-        )
-        script(src="/admin/js/script.js")
-        script(src="/admin/js/category.js")
-        script(
-  src="https://cdn.tiny.cloud/1/yoiu0qcbm87cd8qyoii5l727zj7t51iq1ffg16bp3vi8935y/tinymce/8/tinymce.min.js"
-  referrerpolicy="origin"
-  crossorigin="anonymous"
-)
-        script(src="/admin/js/my-tinymce-config.js")
+    script(
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    )
+    script(
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    )
+    script(src="/admin/js/script.js")
+    script(src="/admin/js/category.js")
+    script(
+      src="https://cdn.tiny.cloud/1/yoiu0qcbm87cd8qyoii5l727zj7t51iq1ffg16bp3vi8935y/tinymce/8/tinymce.min.js"
+      referrerpolicy="origin"
+      crossorigin="anonymous"
+    )
+    script(src="/admin/js/my-tinymce-config.js")

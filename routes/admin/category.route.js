@@ -18,4 +18,5 @@ router.patch(
   middleware.upload_images,
   controller.category_edit_patch,
 );
+router.get("/delete/:id", controller.category_delete);
 module.exports = router;

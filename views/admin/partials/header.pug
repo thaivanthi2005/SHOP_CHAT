@@ -1,9 +1,17 @@
 header.header
   .header-inner
-    .header-brand
-      a(href="/admin/dashboard")
-        span.header-brand__mark A
-        span.header-brand__text ADMIN
-    .header-actions
-      a.header-user(href="/admin/my-account") #{user.fullName}
-      a.header-logout(href="/admin/auth/logout") Logout
+    .header-logo
+      a(href=`${prefixAdmin}/dashboard`)
+        if settings && settings.logo
+          img(src=settings.logo, alt=(settings.websiteName || "Admin"))
+        else
+          span.header-logo-text #{settings && settings.websiteName ? settings.websiteName : "Vivo"}
+        span.header-admin-badge ADMIN
+    .header-nav
+      .inner-menu
+        ul
+          if user
+            li
+              a.header-link-user(href=`${prefixAdmin}/my-account`) #{user.fullName}
+            li
+              a.header-link-login(href=`${prefixAdmin}/auth/logout`) ĐĂNG XUẤT

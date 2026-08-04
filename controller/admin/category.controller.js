@@ -2,7 +2,7 @@ const Product1 = require("../../models/category.model");
 const system_config = require("../../config/system");
 
 module.exports.category = async (req, res) => {
-  const categories = await Product1.find().lean();
+  const categories = await Product1.find({ delete: false }).lean();
   const categoryTree = createTree(categories, "");
   res.render("admin/pages/category/index", {
     pagetitle: "Danh mục sản phẩm",
@@ -69,9 +69,7 @@ module.exports.category_edit = async (req, res) => {
 // [GET]_--------------------------END Edit -----------------------------
 
 module.exports.category_edit_patch = async (req, res) => {
-  console.log(req);
   const id = req.params.id;
-  console.log(id);
   const updateData = {
     title: req.body.title,
     parent_id: req.body.parent_id,
@@ -87,5 +85,22 @@ module.exports.category_edit_patch = async (req, res) => {
     res.redirect(`${system_config.prefixAdmin}/category`);
   } catch (error) {
     res.redirect(`${system_config.prefixAdmin}/product`);
+  }
+};
+
+// [GET]_--------------------------delete -----------------------------
+module.exports.category_delete = async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  try {
+    await Product1.updateOne(
+      { _id: id },
+      {
+        delete: true,
+      },
+    );
+    res.redirect(`${system_config.prefixAdmin}/category`);
+  } catch {
+    res.redirect(`${system_config.prefixAdmin}/dashboard`);
   }
 };

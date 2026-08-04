@@ -1,22 +1,19 @@
 mixin form-change-multi(prefixAdmin)
-    form(
-                            action=prefixAdmin
-                            method="POST"
-                            form-change-multi
-                            )
-                            .d-flex.align-items-start
-                                .form-group
-                                select(name="type" class="form-control")
-                                    option(disabled selected) -- Chọn hành động --
-                                    option(value="InStock") Còn hàng
-                                    option(value="OutStock") Hết hàng
-                                    option(value="delete-all") Xóa tất cả
-                                    option(value="change-position") Thay đổi vị trí
-                                .form-group
-                                input(
-                                    type="text"
-                                    name="ids"
-                                    value=""
-                                    class="form-control"
-                                )
-                                button(type="submit" class="btn btn-primary") Áp dụng
+  form.form-change-multi(
+    action=prefixAdmin
+    method="POST"
+    form-change-multi
+  )
+    .form-change-multi__row
+      select.form-control.form-control-sm(name="type")
+        option(disabled selected) -- Chọn hành động --
+        option(value="InStock") Còn hàng
+        option(value="OutStock") Hết hàng
+        option(value="delete-all") Xóa tất cả
+        option(value="change-position") Thay đổi vị trí
+      input.d-none(
+        type="text"
+        name="ids"
+        value=""
+      )
+      button.btn.btn-primary.btn-sm(type="submit") Áp dụng

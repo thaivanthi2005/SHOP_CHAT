@@ -1,8 +1,9 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+include ../../mixins/category-option.pug
 block main
-  if(roles.permissions.includes("products_create"))
-    h1.mb-4 Thêm mới sản phẩm
+  if(roles.permissions.includes("products_edit"))
+    h1.mb-4 Thêm sản phẩm
     +alert(success, error)
     form(
       action=`${prefixAdmin}/products/create`
@@ -19,8 +20,15 @@ block main
           id="title"
           name="title"
         )
-
-      //- Mô tả
+      .form-group
+        label(for="product_category_id") Danh mục cha
+        select.form-control(
+          id="product_category_id"
+          name="product_category_id"
+        )
+          - const parentId = products.product_category_id ? products.product_category_id.toString() : ''
+          option(value="" selected=(parentId === '')) -- Danh mục gốc --
+          +categoryOptions(layoutcategory, parentId)
       //- Mô tả
       .form-group
         label(for="my-expressjs-tinymce-app") Mô tả

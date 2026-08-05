@@ -35,7 +35,7 @@ function createTree(arr, parentId = "") {
 }
 
 module.exports.category_create = async (req, res) => {
-  const categories = await Product1.find().lean();
+  const categories = await Product1.find({ delete: false }).lean();
   const categoryTree = createTree(categories, "");
   res.render("admin/pages/category/create", {
     pagetitle: "Tạo danh mục sản phẩm",
@@ -91,7 +91,6 @@ module.exports.category_edit_patch = async (req, res) => {
 // [GET]_--------------------------delete -----------------------------
 module.exports.category_delete = async (req, res) => {
   const id = req.params.id;
-  console.log(id);
   try {
     await Product1.updateOne(
       { _id: id },

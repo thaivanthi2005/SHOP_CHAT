@@ -30,9 +30,11 @@ module.exports.index = async (req, res) => {
     coutProduct,
   );
   //end pagination
+  const sortKey = req.query.valueKey || "position";
+  const sortValue = req.query.value === "desc" ? -1 : 1;
   const products2 = await Product.find(find)
     .sort({
-      [req.query.valueKey]: req.query.value === "desc" ? -1 : 1,
+      [sortKey]: sortValue,
     })
     .limit(objectPagination.limitItem)
     .skip(objectPagination.skip);
@@ -118,8 +120,14 @@ module.exports.deleteItem = async (req, res) => {
 //[GET] /create
 
 module.exports.create_products = async (req, res) => {
+  let find = {
+    delete: false,
+  };
+  const products = await Product.find(find);
+  console.log(products);
   res.render("admin/pages/products/create", {
     pagetitle: "TẠO MỚI SẢN PHẨM",
+    products: products,
   });
 };
 
@@ -195,7 +203,6 @@ module.exports.edit_products_patch = async (req, res) => {
       account_id: res.locals.user.role_id,
       updatedAt: new Date(),
     };
-    console.log(updateData);
     await Product.updateOne(
       { _id: id },
       {

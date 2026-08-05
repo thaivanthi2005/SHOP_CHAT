@@ -61,7 +61,7 @@ module.exports.order = async (req, res) => {
   }
 
   const orderInfo = {
-    cartId: cartId,
+    cart_id: cartId,
     userInfo: userInfo,
     products: products,
   };

@@ -26,19 +26,22 @@ header.header
                         a(href=pathProduct) SẢN PHẨM
                             +subMenu(layoutcategory)
                     if(user)
+                        li 
+                            a(href='/users/friends') BẠN BÈ
+                        li 
+                            a(href='/rooms-chat') PHÒNG CHAT
                         li
                             a.cart-link(href="/cart" aria-label=`Giỏ hàng (${total_quantity})`)
                                 i.fas.fa-shopping-cart(aria-hidden="true")
                                 if total_quantity > 0
                                     span.cart-badge #{total_quantity}
                         li
+                            a(href="/orders") ĐƠN HÀNG
+                        li
                             a.header-link-user(href='/user/info') #{user.fullName}
                         li
                             a(href='/user/logout') ĐĂNG XUẤT
-                        li 
-                            a(href='/users/friends') BẠN BÈ
-                        li 
-                            a(href='/rooms-chat') PHÒNG CHAT
+                        
                     else
                         li
                             a.header-link-login(href='/user/login') ĐĂNG NHẬP

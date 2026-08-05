@@ -1,0 +1,71 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+include ../../mixins/alert.pug
+
+block main
+  +alert(success, error)
+  .container.page-shell
+    .row
+      .col-12
+        +box-head("CHI TIẾT ĐƠN HÀNG")
+
+    .row
+      .col-12
+        .page-panel.mb-4
+          .d-flex.justify-content-between.align-items-center.flex-wrap.gap-2.mb-3
+            div
+              h4.mb-1 Mã đơn: ##{order._id.toString().slice(-6).toUpperCase()}
+              p.mb-0.text-muted
+                | Ngày đặt: 
+                strong= new Date(order.createdAt).toLocaleString("vi-VN")
+            a.btn.btn-secondary.btn-sm(href="/orders") Quay lại đơn hàng
+
+          h5.mb-3 Thông tin người nhận
+          table.table.table-bordered
+            tbody
+              tr
+                td Họ tên
+                td
+                  b= order.userInfo.fullName
+              tr
+                td Số điện thoại
+                td
+                  b= order.userInfo.phone
+              tr
+                td Địa chỉ
+                td
+                  b= order.userInfo.address
+
+    .row
+      .col-12
+        .page-panel
+          h5.mb-3 Sản phẩm trong đơn
+          table.table.table-bordered
+            thead
+              tr
+                th STT
+                th Ảnh
+                th Tên
+                th Giá
+                th Số lượng
+                th Tổng tiền
+            tbody
+              if order.products.length > 0
+                each item, index in order.products
+                  tr
+                    td= index + 1
+                    td
+                      if item.productInfo && item.productInfo.thumbnail
+                        img(
+                          src=item.productInfo.thumbnail
+                          alt=item.productInfo.title
+                          width="80"
+                        )
+                    td= item.productInfo ? item.productInfo.title : "Sản phẩm đã xóa"
+                    td= item.pricenew + " VNĐ"
+                    td= item.quantity
+                    td= item.totalPrice + " VNĐ"
+
+          if order.products.length > 0
+            .checkout-summary
+              h3.order-total Tổng đơn hàng: #{order.totalPrice} VNĐ

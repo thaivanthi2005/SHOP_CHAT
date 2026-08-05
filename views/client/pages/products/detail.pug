@@ -28,16 +28,19 @@ block main
 
           p.product-stock Còn lại #{product.stock} sản phẩm
 
-          form.cart-form(action=`/cart/add/${product.id}`, method="POST")
-            input.quantity-input(
-              type="number"
-              name="quantity"
-              value="1"
-              min="1"
-              max=product.stock
-              aria-label="Số lượng"
-            )
-            button.btn-add-cart(type="submit") Thêm vào giỏ hàng
+          if product.stock > 0
+            form.cart-form(action=`/cart/add/${product.id}`, method="POST")
+              input.quantity-input(
+                type="number"
+                name="quantity"
+                value="1"
+                min="1"
+                max=product.stock
+                aria-label="Số lượng"
+              )
+              button.btn-add-cart(type="submit") Thêm vào giỏ hàng
+          else
+            p.text-danger.fw-semibold Hết hàng
 
       .product-description
         h2.section-title Mô tả sản phẩm

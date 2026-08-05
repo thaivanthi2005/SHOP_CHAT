@@ -1,0 +1,62 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+include ../../mixins/alert.pug
+
+block main
+  +alert(success, error)
+  .container.page-shell
+    .row
+      .col-12
+        +box-head("ĐƠN HÀNG CỦA TÔI")
+
+    .row
+      .col-12
+        if orders && orders.length > 0
+          each order, index in orders
+            .page-panel.mb-4
+              .d-flex.justify-content-between.align-items-center.flex-wrap.gap-2.mb-3
+                div
+                  h4.mb-1 Đơn hàng ##{order._id.toString().slice(-6).toUpperCase()}
+                  p.mb-0.text-muted
+                    | Ngày đặt: 
+                    strong= new Date(order.createdAt).toLocaleString("vi-VN")
+                a.btn.btn-outline-primary.btn-sm(href=`/orders/detail/${order._id}`) Xem chi tiết
+
+              table.table.table-bordered.mb-3
+                thead
+                  tr
+                    th STT
+                    th Ảnh
+                    th Tên sản phẩm
+                    th Giá
+                    th Số lượng
+                    th Thành tiền
+                tbody
+                  each item, i in order.products
+                    tr
+                      td= i + 1
+                      td
+                        if item.productInfo && item.productInfo.thumbnail
+                          img(
+                            src=item.productInfo.thumbnail
+                            alt=item.productInfo.title
+                            style="width: 72px"
+                          )
+                      td= item.productInfo ? item.productInfo.title : "Sản phẩm đã xóa"
+                      td= item.pricenew + " VNĐ"
+                      td= item.quantity
+                      td= item.totalPrice + " VNĐ"
+
+              .checkout-summary
+                p.mb-1
+                  | Người nhận: 
+                  strong= order.userInfo.fullName
+                  |  — 
+                  = order.userInfo.phone
+                h3.order-total.mb-0
+                  | Tổng đơn: 
+                  strong= order.totalPrice + " VNĐ"
+        else
+          .empty-state
+            p Bạn chưa có đơn hàng nào.
+            a(href="/products") Tiếp tục mua sắm

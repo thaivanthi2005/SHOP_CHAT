@@ -5,7 +5,7 @@ const User = require("../../models/user.model");
 const ForgotPassword = require("../../models/forgot-password");
 const generateHelper = require("../../helper/generate");
 const sendMailHelper = require("../../helper/sendMail");
-var md5 = require("md5");
+const bcrypt = require("bcrypt");
 
 //[GET] /user/register
 module.exports.indexRegister = async (req, res) => {
@@ -23,7 +23,7 @@ module.exports.registerPost = async (req, res) => {
     res.redirect(req.get("referer"));
     return;
   }
-  req.body.password = md5(req.body.password);
+  req.body.password = await bcrypt.hash(req.body.password, 10);
   const user = new User(req.body);
   await user.save();
   res.cookie("tokenUser", user.tokenUser);
@@ -49,7 +49,8 @@ module.exports.loginPost = async (req, res) => {
     res.redirect(req.get("referer"));
     return;
   }
-  if (md5(password) != user.password) {
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
     req.session.error = ["SAI MẬT KHẨU"];
     res.redirect(req.get("referer"));
     return;
@@ -184,7 +185,7 @@ module.exports.resetPasswordPost = async (req, res) => {
   await User.updateOne(
     { tokenUser: tokenUser },
     {
-      password: md5(password),
+      password: await bcrypt.hash(password, 10),
     },
   );
   res.redirect("/");

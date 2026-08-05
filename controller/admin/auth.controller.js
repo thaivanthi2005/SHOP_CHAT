@@ -1,7 +1,7 @@
 const accounts = require("../../models/accounts.model");
 const system_config = require("../../config/system");
 const roles = require("../../models/roles.model");
-var md5 = require("md5");
+const bcrypt = require("bcrypt");
 
 // -------------- GET login -----------------
 module.exports.auth_login = async (req, res) => {
@@ -23,7 +23,8 @@ module.exports.auth_login_post = async (req, res) => {
     req.session.error = ["Tài Khoản Không Tồn Tại"];
     res.redirect(req.get("referer"));
   } else {
-    if (md5(password) != user.password) {
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
       req.session.error = ["Mật Khẩu Không Đúng!"];
       res.redirect(req.get("referer"));
     } else {

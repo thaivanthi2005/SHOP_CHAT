@@ -6,7 +6,6 @@ const ForgotPassword = require("../../models/forgot-password");
 const generateHelper = require("../../helper/generate");
 const sendMailHelper = require("../../helper/sendMail");
 const usersSocket = require("../../sockets/client/users.socket");
-var md5 = require("md5");
 
 //[GET] /users/not-friend
 module.exports.notFriend = async (req, res) => {

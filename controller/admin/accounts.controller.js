@@ -1,7 +1,7 @@
 const accounts = require("../../models/accounts.model");
 const system_config = require("../../config/system");
 const roles = require("../../models/roles.model");
-var md5 = require("md5");
+const bcrypt = require("bcrypt");
 
 module.exports.accounts = async (req, res) => {
   let find = {
@@ -28,7 +28,7 @@ module.exports.create = async (req, res) => {
 
 // -------- POST create -------
 module.exports.create_post = async (req, res) => {
-  req.body.password = md5(req.body.password);
+  req.body.password = await bcrypt.hash(req.body.password, 10);
   const record = new accounts(req.body);
   await record.save();
   res.redirect(`${system_config.prefixAdmin}/accounts`);
@@ -67,7 +67,11 @@ module.exports.edit_patch = async (req, res) => {
   let find = {
     _id: req.params.id,
   };
-  req.body.password = md5(req.body.password);
+  if (req.body.password) {
+    req.body.password = await bcrypt.hash(req.body.password, 10);
+  } else {
+    delete req.body.password;
+  }
   await accounts.findOne(find).updateOne(req.body);
   res.redirect(`${system_config.prefixAdmin}/accounts`);
 };

@@ -22,7 +22,7 @@ module.exports.create = async (req, res) => {
   const role = await roles.find(find);
   res.render("admin/pages/accounts/create", {
     pagetitle: "Tạo tài khoản",
-    roles: role,
+    roles1: role,
   });
 };
 

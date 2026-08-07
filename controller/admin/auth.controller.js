@@ -2,6 +2,7 @@ const accounts = require("../../models/accounts.model");
 const system_config = require("../../config/system");
 const roles = require("../../models/roles.model");
 const bcrypt = require("bcrypt");
+const generate = require("../../helper/generate");
 
 // -------------- GET login -----------------
 module.exports.auth_login = async (req, res) => {

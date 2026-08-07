@@ -1,0 +1,57 @@
+extends ../../layouts/auth.pug
+
+include ../../mixins/alert.pug
+
+block main
+  +alert(success, error)
+
+  .card.shadow
+    .card-body
+      h3.text-center.mb-4 Đăng ký
+
+      form(
+        action=`${prefixAdmin}/auth/register`
+        method="POST"
+      )
+        .form-group.mb-3
+          label(for="fullName") Họ tên
+          input#fullName.form-control(
+            type="text"
+            name="fullName"
+            placeholder="Nhập họ tên"
+            required
+          )
+
+        .form-group.mb-3
+          label(for="email") Email
+          input#email.form-control(
+            type="email"
+            name="email"
+            placeholder="Nhập email"
+            required
+          )
+
+        .form-group.mb-3
+          label(for="password") Mật khẩu
+          input#password.form-control(
+            type="password"
+            name="password"
+            placeholder="Nhập mật khẩu"
+            required
+          )
+
+        .form-group.mb-3
+          label(for="confirmPassword") Xác nhận mật khẩu
+          input#confirmPassword.form-control(
+            type="password"
+            name="confirmPassword"
+            placeholder="Nhập lại mật khẩu"
+            required
+          )
+
+        button.btn.btn-primary.w-100(type="submit") Đăng ký
+
+        .text-center.mt-3
+          | Đã có tài khoản?
+          |
+          a(href=`${prefixAdmin}/auth/login`) Đăng nhập

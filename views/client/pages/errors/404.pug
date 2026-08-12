@@ -7,92 +7,244 @@ html(lang="vi")
     link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css")
     link(rel="preconnect" href="https://fonts.googleapis.com")
     link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin="")
-    link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Work+Sans:wght@400;500;600&display=swap")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Space+Grotesk:wght@500;600;700&display=swap")
     style.
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+      :root {
+        --color-bg: #f5f7fc;
+        --color-surface: #ffffff;
+        --color-ink: #0b1220;
+        --color-muted: #64748b;
+        --color-border: #e2e8f0;
+        --color-primary: #415fff;
+        --color-primary-strong: #2b4bff;
+        --color-primary-soft: #eef2ff;
+        --color-accent: #5b7cff;
+        --color-navy: #06101f;
+        --font-body: "DM Sans", "Segoe UI", sans-serif;
+        --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+      }
+
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(24px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes floatOrb {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        33%       { transform: translate(12px, -18px) scale(1.05); }
+        66%       { transform: translate(-8px, 10px) scale(0.97); }
+      }
+
+      @keyframes iconFloat {
+        0%, 100% { transform: translateY(0); }
+        50%       { transform: translateY(-6px); }
+      }
+
+      @keyframes iconPulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(65, 95, 255, 0.25); }
+        50%       { box-shadow: 0 0 0 12px rgba(65, 95, 255, 0); }
+      }
+
+      @keyframes shimmer {
+        0%   { background-position: 200% center; }
+        100% { background-position: -200% center; }
+      }
+
+      @keyframes dividerGrow {
+        from { width: 0; opacity: 0; }
+        to   { width: 48px; opacity: 1; }
+      }
+
+      @keyframes zeissScan {
+        0%   { top: 0; opacity: 0; }
+        10%  { opacity: 0.6; }
+        90%  { opacity: 0.6; }
+        100% { top: 100%; opacity: 0; }
+      }
+
+      @keyframes particleDrift {
+        0%   { transform: translateY(0) translateX(0); opacity: 0; }
+        10%  { opacity: 0.5; }
+        90%  { opacity: 0.3; }
+        100% { transform: translateY(-120px) translateX(20px); opacity: 0; }
+      }
+
       body {
-        font-family: "Work Sans", "Segoe UI", sans-serif;
+        font-family: var(--font-body);
         background:
-          radial-gradient(800px 320px at 10% 0%, rgba(234, 88, 12, 0.12), transparent 55%),
-          #f6f3ee;
+          radial-gradient(900px 360px at 0% -8%, rgba(65, 95, 255, 0.14), transparent 55%),
+          radial-gradient(720px 300px at 100% 0%, rgba(91, 124, 255, 0.1), transparent 50%),
+          radial-gradient(600px 280px at 50% 100%, rgba(65, 95, 255, 0.06), transparent 60%),
+          var(--color-bg);
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow: hidden;
+        position: relative;
       }
+
+      .bg-orb {
+        position: fixed;
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(70px);
+        opacity: 0.18;
+        animation: floatOrb 8s ease-in-out infinite;
+      }
+
+      .bg-orb--1 {
+        width: 340px;
+        height: 340px;
+        background: var(--color-primary);
+        top: -100px;
+        left: -80px;
+        animation-delay: 0s;
+      }
+
+      .bg-orb--2 {
+        width: 280px;
+        height: 280px;
+        background: var(--color-accent);
+        bottom: -60px;
+        right: -60px;
+        animation-delay: -3s;
+        animation-duration: 10s;
+      }
+
+      .bg-orb--3 {
+        width: 200px;
+        height: 200px;
+        background: #93a8ff;
+        top: 40%;
+        right: 10%;
+        animation-delay: -5s;
+        animation-duration: 12s;
+        opacity: 0.12;
+      }
+
+      .particle {
+        position: fixed;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--color-primary);
+        pointer-events: none;
+        opacity: 0;
+        animation: particleDrift 6s ease-in-out infinite;
+      }
+
+      .particle:nth-child(1) { left: 15%; bottom: 20%; animation-delay: 0s; }
+      .particle:nth-child(2) { left: 35%; bottom: 10%; animation-delay: 1.5s; width: 3px; height: 3px; }
+      .particle:nth-child(3) { left: 65%; bottom: 25%; animation-delay: 3s; }
+      .particle:nth-child(4) { left: 85%; bottom: 15%; animation-delay: 4.5s; width: 3px; height: 3px; }
 
       .page-404 {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 3rem 2rem;
-        background: #fff;
-        border-radius: 20px;
-        border: 1px solid #e7e5e4;
-        box-shadow: 0 16px 40px rgba(28, 25, 23, 0.1);
+        padding: 3rem 2rem 2.5rem;
+        background: var(--color-surface);
+        border-radius: 8px;
+        border: 1px solid var(--color-border);
+        box-shadow: 0 18px 44px rgba(11, 18, 32, 0.12);
         max-width: 480px;
         width: 90%;
         position: relative;
         overflow: hidden;
-      }
-
-      .page-404::before,
-      .page-404::after {
-        content: '';
-        position: absolute;
-        border-radius: 50%;
-        pointer-events: none;
-        opacity: 0.12;
-        filter: blur(60px);
+        animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
       }
 
       .page-404::before {
-        width: 280px;
-        height: 280px;
-        background: #ea580c;
-        top: -80px;
-        right: -60px;
+        content: '';
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--color-primary), #93a8ff);
       }
 
-      .page-404::after {
-        width: 240px;
-        height: 240px;
-        background: #78716c;
-        bottom: -60px;
-        left: -40px;
+      .page-404__scan {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(65, 95, 255, 0.35), transparent);
+        pointer-events: none;
+        animation: zeissScan 4s ease-in-out infinite;
+      }
+
+      .zeiss-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-muted);
+        margin-bottom: 1.25rem;
+        position: relative;
+        z-index: 1;
+        animation: fadeInUp 0.7s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .zeiss-tag::before,
+      .zeiss-tag::after {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 1px;
+        background: var(--color-border);
       }
 
       .icon-wrap {
         width: 72px;
         height: 72px;
         border-radius: 50%;
-        background: #fff7ed;
-        border: 1px solid #fed7aa;
+        background: var(--color-primary-soft);
+        border: 1px solid rgba(65, 95, 255, 0.2);
         display: flex;
         align-items: center;
         justify-content: center;
         margin-bottom: 1.5rem;
         position: relative;
         z-index: 1;
+        animation:
+          fadeInUp 0.7s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both,
+          iconFloat 3s ease-in-out 0.8s infinite,
+          iconPulse 2.5s ease-in-out 1s infinite;
       }
 
       .icon-wrap .ti {
         font-size: 32px;
-        color: #c2410c;
+        color: var(--color-primary);
       }
 
       .error-code {
-        font-family: "Outfit", sans-serif;
+        font-family: var(--font-display);
         font-size: 96px;
-        font-weight: 800;
+        font-weight: 700;
         line-height: 1;
         margin-bottom: 0.5rem;
-        background: linear-gradient(135deg, #ea580c, #9a3412);
+        letter-spacing: -0.04em;
+        background: linear-gradient(
+          135deg,
+          var(--color-primary-strong) 0%,
+          var(--color-primary) 40%,
+          #93a8ff 60%,
+          var(--color-primary) 80%,
+          var(--color-primary-strong) 100%
+        );
+        background-size: 200% auto;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        animation:
+          fadeInUp 0.7s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both,
+          shimmer 5s linear 1s infinite;
         position: relative;
         z-index: 1;
       }
@@ -101,30 +253,34 @@ html(lang="vi")
         width: 48px;
         height: 3px;
         border-radius: 99px;
-        background: linear-gradient(90deg, #ea580c, #fb923c);
+        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
         margin-bottom: 1.5rem;
         position: relative;
         z-index: 1;
+        animation: dividerGrow 0.6s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
       }
 
       .error-title {
-        font-family: "Outfit", sans-serif;
+        font-family: var(--font-display);
         font-size: 22px;
         font-weight: 700;
-        color: #1c1917;
+        color: var(--color-ink);
         margin-bottom: 0.75rem;
+        letter-spacing: -0.02em;
         position: relative;
         z-index: 1;
+        animation: fadeInUp 0.7s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
       }
 
       .error-desc {
         font-size: 15px;
-        color: #78716c;
+        color: var(--color-muted);
         line-height: 1.7;
         max-width: 340px;
         margin-bottom: 2rem;
         position: relative;
         z-index: 1;
+        animation: fadeInUp 0.7s 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
       }
 
       .btn-home {
@@ -132,25 +288,43 @@ html(lang="vi")
         align-items: center;
         gap: 8px;
         padding: 12px 24px;
-        border-radius: 999px;
-        background: linear-gradient(135deg, #ea580c, #c2410c);
+        border-radius: 6px;
+        background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
         color: #fff;
         font-size: 14px;
         font-weight: 700;
-        font-family: "Outfit", sans-serif;
+        font-family: var(--font-display);
         text-decoration: none;
-        box-shadow: 0 10px 24px rgba(194, 65, 12, 0.3);
-        transition: filter 0.15s, transform 0.15s;
+        box-shadow: 0 10px 24px rgba(65, 95, 255, 0.3);
+        transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
         position: relative;
         z-index: 1;
+        animation: fadeInUp 0.7s 0.46s cubic-bezier(0.22, 1, 0.36, 1) both;
       }
 
-      .btn-home:hover { filter: brightness(1.05); }
-      .btn-home:active { transform: scale(0.97); }
-      .btn-home .ti { font-size: 16px; }
+      .btn-home:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.05);
+        box-shadow: 0 14px 28px rgba(65, 95, 255, 0.38);
+      }
+
+      .btn-home:active { transform: translateY(0); }
+      .btn-home .ti { font-size: 16px; transition: transform 0.2s ease; }
+      .btn-home:hover .ti { transform: translateX(-2px); }
 
   body
+    .bg-orb.bg-orb--1
+    .bg-orb.bg-orb--2
+    .bg-orb.bg-orb--3
+    span.particle(aria-hidden="true")
+    span.particle(aria-hidden="true")
+    span.particle(aria-hidden="true")
+    span.particle(aria-hidden="true")
+
     .page-404
+      .page-404__scan(aria-hidden="true")
+      p.zeiss-tag Co-engineered with ZEISS
+
       .icon-wrap
         i.ti.ti-map-search(aria-hidden="true")
 

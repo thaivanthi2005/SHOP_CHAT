@@ -126,7 +126,7 @@ begin/
 
 ```bash
 # 1. Clone repository
-git clone <repo-url>
+git clone <https://github.com/thaivanthi2005/SHOP_CHAT>
 cd begin
 
 # 2. Cài dependencies

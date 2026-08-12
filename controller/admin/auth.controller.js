@@ -3,7 +3,12 @@ const system_config = require("../../config/system");
 const roles = require("../../models/roles.model");
 const bcrypt = require("bcrypt");
 const generate = require("../../helper/generate");
+const { generateToken, verifyToken } = require("../../helper/jwt");
 
+const COOKIE_OPTIONS = {
+  httpOnly: true,
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+};
 // -------------- GET login -----------------
 module.exports.auth_login = async (req, res) => {
   res.render("admin/pages/auth/login", {
@@ -24,8 +29,9 @@ module.exports.auth_login_post = async (req, res) => {
     req.session.error = ["Tài Khoản Không Tồn Tại"];
     res.redirect(req.get("referer"));
   } else {
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
+    const bcrypt_pass = await bcrypt.compare(password, user.password);
+    console.log(bcrypt_pass);
+    if (!bcrypt_pass) {
       req.session.error = ["Mật Khẩu Không Đúng!"];
       res.redirect(req.get("referer"));
     } else {
@@ -33,7 +39,9 @@ module.exports.auth_login_post = async (req, res) => {
         req.session.error = ["Tài Khoản Không còn hoạt động !"];
         res.redirect(req.get("referer"));
       } else {
-        res.cookie("token", user.token);
+        // jwt
+        const token = generateToken({ id: user.id, email: user.email });
+        res.cookie("token", token, COOKIE_OPTIONS);
         res.redirect(`${system_config.prefixAdmin}/dashboard`);
       }
     }

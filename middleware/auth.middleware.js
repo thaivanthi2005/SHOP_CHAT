@@ -1,14 +1,22 @@
 const accounts = require("../models/accounts.model");
 const system_config = require("../config/system");
 const roles = require("../models/roles.model");
+const { verifyToken } = require("../helper/jwt"); // jwt
 
 module.exports.auth_middleware = async (req, res, next) => {
   if (!req.cookies.token) {
     res.redirect(`${system_config.prefixAdmin}/auth/login`);
   } else {
+    // jwt
+    let decoded;
+    try {
+      decoded = verifyToken(req.cookies.token);
+    } catch (error) {
+      return res.redirect(`${system_config.prefixAdmin}/auth/login`);
+    }
     const user = await accounts
       .findOne({
-        token: req.cookies.token,
+        _id: decoded.id,
         deleted: false,
       })
       .select("-password");

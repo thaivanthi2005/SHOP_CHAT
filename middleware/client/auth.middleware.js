@@ -30,6 +30,5 @@ module.exports.auth_middleware = async (req, res, next) => {
   if (user.status === "inactive") {
     return res.redirect(`/user/logout`);
   }
-
   next();
 };

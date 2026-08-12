@@ -61,8 +61,8 @@ module.exports.loginPost = async (req, res) => {
     res.redirect(req.get("referer"));
     return;
   }
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) {
+  const bcrypt_pass = await bcrypt.compare(password, user.password);
+  if (!bcrypt_pass) {
     req.session.error = ["SAI MẬT KHẨU"];
     res.redirect(req.get("referer"));
     return;
